@@ -39,6 +39,8 @@ const Global = createGlobalStyle`
         --color-gray-3: #9191A3;
         --color-gray-5: #6A6878; /* text color */
         /* ... */
+        --success: #3fe864;
+        --negative: #e83f5b;
     }
 `;
 
