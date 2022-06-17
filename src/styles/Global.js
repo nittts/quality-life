@@ -23,22 +23,26 @@ const Global = createGlobalStyle`
 
     :root {
         /* branding colors */
-        --color-primary-1: #DEFFEF;
-        --color-primary-2: #BEF6DB;
-        --color-primary-3: #80D9AE;
-        --color-secondary-1: #CBF4FF;
-        --color-secondary-2: #9BE9FE;
-        --color-secondary-3: #68D3F1;
-        --color-tertiary-1: #FFD9F6;
-        --color-tertiary-2: #EEC6E5;
-        --color-tertiary-3: #EB92D6;
+        --color-primary-1: #deffef;
+        --color-primary-2: #bef6db;
+        --color-primary-3: #80d9ae;
+
+        --color-secondary-1: #cbf4ff;
+        --color-secondary-2: #9be9fe;
+        --color-secondary-3: #68d3f1;
+
+        --color-tertiary-1: #ffd9f6;
+        --color-tertiary-2: #eec6e5;
+        --color-tertiary-3: #eb92d6;
+
         /* other colors */
-        --color-gray-1: #F8F7FA; /* background color */
-        --color-gray-2: #E7E7E9;
-        --color-gray-3: #B5B5BD;
-        --color-gray-3: #9191A3;
-        --color-gray-5: #6A6878; /* text color */
+        --color-gray-2: #f5f5f5;
+        --color-gray-3: #f0f0f0;
+        --color-gray-4: #dfdfdf;
+        --color-gray-5: #606060;
+
         /* ... */
+        --color-yellow: #d8d128;
         --success: #3fe864;
         --negative: #e83f5b;
     }
