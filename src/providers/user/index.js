@@ -1,6 +1,6 @@
 import jwtDecode from "jwt-decode";
 import { createContext, useContext, useState } from "react";
-// import axios
+import api from "../../services/api";
 
 export const UserContext = createContext();
 
