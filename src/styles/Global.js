@@ -12,6 +12,7 @@ const Global = createGlobalStyle`
     body {
         width: 100vw;
         min-height: 100vh;
+        font-family: 'Inter', sans-serif;
     }
 
     button, a {
@@ -19,6 +20,10 @@ const Global = createGlobalStyle`
         :hover {
             cursor: pointer;
         }
+    }
+
+    input, button, select, textarea {
+        font-family: 'Mukta', sans-serif;
     }
 
     :root {
