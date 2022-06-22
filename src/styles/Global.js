@@ -41,6 +41,7 @@ const Global = createGlobalStyle`
         --color-tertiary-3: #eb92d6;
 
         /* other colors */
+        --color-white: #fff;
         --color-gray-2: #f5f5f5;
         --color-gray-3: #f0f0f0;
         --color-gray-4: #dfdfdf;
