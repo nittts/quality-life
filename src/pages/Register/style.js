@@ -20,7 +20,7 @@ export const Container = styled.div`
       var(--color-primary-2),
       var(--color-primary-3)
     );
-    clip-path: circle(20% at left top);
+    clip-path: circle(28% at left top);
   }
 
   &::after {
@@ -28,7 +28,7 @@ export const Container = styled.div`
       var(--color-secondary-3),
       var(--color-secondary-2)
     );
-    clip-path: circle(20% at right bottom);
+    clip-path: circle(28% at right bottom);
   }
 
   position: relative;
@@ -37,7 +37,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: var(--color-tertiary-2);
+  background: var(--color-gray-2);
 
   form {
     z-index: 1;
@@ -45,7 +45,7 @@ export const Container = styled.div`
     padding: 32px 32px 24px 32px;
     display: flex;
     flex-direction: column;
-    gap: 9px;
+    gap: 10px;
     position: relative;
 
     background: #fff;
@@ -53,38 +53,16 @@ export const Container = styled.div`
 
     transition: box-shadow 0.35s ease-in-out;
 
-    :hover {
-      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    > a {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      width: 100px;
-      text-align: center;
-      font-size: 14px;
-      border-radius: 4px;
-      padding: 5px;
-      color: var(--color-secondary-3);
-      border: 2px solid var(--color-secondary-3);
-      transition: all 0.3s ease;
-
-      :hover {
-        color: var(--color-white);
-        background: var(--color-secondary-2);
-        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
-      }
-    }
+    box-shadow: 0 6px 2px 1px rgba(0, 0, 0, 0.1);
 
     h2 {
       ::first-letter {
         font-weight: 700;
       }
-      margin-top: 32px;
+      /* margin-top: 32px; */
       text-align: center;
       font-size: 2.5rem;
-      font-weight: 300;
+      font-weight: 400;
       font-family: "Mukta", sans-serif;
       color: var(--color-tertiary-3);
 
@@ -98,35 +76,50 @@ export const Container = styled.div`
     }
 
     > div {
-      position: relative;
-
       display: flex;
       flex-direction: column;
       text-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.2);
 
-      svg {
-        position: absolute;
-        top: 18px;
-        left: 13px;
-        stroke-width: 3px;
-        color: var(--color-tertiary-3);
+      label {
+        color: var(--color-gray-5);
+        font-weight: 600;
+        text-indent: 12px;
+        font-size: 13px;
+        margin-bottom: 3px;
       }
 
-      input {
-        padding: 12px 10px;
-        text-indent: 24px;
+      div {
+        padding-left: 12px;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
         font-size: 15px;
         border: 1px solid var(--color-gray-4);
         border-radius: 32px;
         background: var(--color-gray-2);
+      }
+
+      svg {
+        stroke-width: 3px;
+        color: var(--color-gray-5);
+      }
+
+      input {
+        flex: 1 0 auto;
+        padding: 13px 10px 12px 10px;
+        background: transparent;
         outline: none;
+        border: none;
+        font-size: 18px;
+        font-weight: 100;
       }
 
       span {
         margin-top: 3px;
-        font-size: 13px;
+        font-size: 12.5px;
         padding-left: 10px;
-        color: var(--color-tertiary-3);
+        color: var(--negative);
+        font-style: italic;
       }
     }
 
@@ -137,11 +130,10 @@ export const Container = styled.div`
       gap: 5px;
       min-width: 180px;
       padding: 12px 10px;
-      border-radius: 5px;
+      border-radius: 4px;
       font-size: 16px;
       border: 0;
       cursor: pointer;
-      border-radius: 32px;
       transition: transform 0.4s;
 
       :hover {
@@ -174,7 +166,7 @@ export const Container = styled.div`
     }
 
     hr:last-of-type {
-      margin-top: 8px;
+      margin: 8px 0;
     }
 
     p {

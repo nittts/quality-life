@@ -1,9 +1,8 @@
 // To do build page
 import { Container } from "./style";
 
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
-import { FiPlus } from "react-icons/fi";
 import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
 
 const Register = () => {
@@ -12,7 +11,6 @@ const Register = () => {
   return (
     <Container>
       <form onSubmit={(e) => e.preventDefault()}>
-        <Link to="/login">Login</Link>
         <h2>
           Quality<span>Life</span>
         </h2>
@@ -20,46 +18,58 @@ const Register = () => {
         <hr />
 
         <div>
-          <FaUser size={14} />
-          <input type="text" name="username" placeholder="Nome de usuário" />
-          <span>Nome de usuário é obrigatório!</span>
+          <label htmlFor="#username">Usuário</label>
+          <div className="input-container">
+            <FaUser size={14} />
+            <input type="text" name="username" placeholder="Nome de usuário" />
+          </div>
+          <span>Verifique seu nome de usuário!</span>
         </div>
 
         <div>
-          <FaEnvelope size={14} />
-          <input type="email" name="email" placeholder="E-mail válido" />
-          <span>E-mail é obrigatório!</span>
+          <label htmlFor="#email">E-mail</label>
+          <div className="input-container">
+            <FaEnvelope size={14} />
+            <input type="email" name="email" placeholder="E-mail válido" />
+          </div>
+          <span>Insira um e-mail válido!</span>
         </div>
 
         <div>
-          <FaLock size={14} />
-          <input
-            type="password"
-            name="password"
-            placeholder="Uma senha forte"
-          />
-          <span>Senha é obrigatório!</span>
+          <label htmlFor="#password">Senha</label>
+          <div className="input-container">
+            <FaLock size={14} />
+            <input
+              type="password"
+              name="password"
+              placeholder="Uma senha forte"
+            />
+          </div>
+          <span>Verifique a senha digitada!</span>
         </div>
 
         <div>
-          <FaLock size={14} />
-          <input
-            type="password"
-            name="passwordConfirme"
-            placeholder="Confirmar senha"
-          />
-          <span>Senha é obrigatório!</span>
+          <label htmlFor="#passwordConfirm">Confirmar senha</label>
+          <div className="input-container">
+            <FaLock size={14} />
+            <input
+              type="password"
+              name="passwordConfirme"
+              placeholder="Confirme a senha"
+            />
+          </div>
+          <span>As senhas não conferem!</span>
         </div>
+
+        <hr />
 
         <button
           type="submit"
           className="primary"
           onClick={() => history.push("/login")}
         >
-          <FiPlus size={14} strokeWidth={3} /> Criar conta
+          Criar conta
         </button>
-
-        <hr />
 
         <p>
           Já tem uma conta? Faça <a href="/login">login</a>.
