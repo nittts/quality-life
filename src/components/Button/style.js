@@ -14,7 +14,6 @@ export const Container = styled.div`
     font-size: 23px;
     border: 0;
     cursor: pointer;
-    border-radius: 32px;
     transition: transform 0.4s;
     align-items: flex-end;
 
@@ -43,6 +42,6 @@ export const Container = styled.div`
   button.white {
     color: var(--color-tertiary-3);
     background: var(--color-gray-2);
-    border-color: var(--color-tertiary-3);
+    border: 2px solid var(--color-tertiary-3);
   }
 `;
