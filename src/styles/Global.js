@@ -26,6 +26,10 @@ const Global = createGlobalStyle`
         font-family: 'Mukta', sans-serif;
     }
 
+    button{
+        border-radius: 4px;
+    }
+
     :root {
         /* branding colors */
         --color-primary-1: #deffef;
