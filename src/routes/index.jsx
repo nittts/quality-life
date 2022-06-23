@@ -16,6 +16,15 @@ const Routes = () => {
       <Route path={"/dashboard"}>
         <h1>Dashboard</h1>
       </Route>
+      <Route path={"/about-us"}>
+        <h1>About us</h1>
+      </Route>
+      <Route path={"*"}>
+        <h1>Not found</h1>
+      </Route>
+      <Route path={"/groups"}>
+        <h1>Groups</h1>
+      </Route>
     </Switch>
   );
 };
