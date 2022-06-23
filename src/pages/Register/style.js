@@ -2,42 +2,12 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  &::before,
-  &::after {
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
-    content: "";
-  }
-
-  &::before {
-    background: linear-gradient(
-      135deg,
-      var(--color-primary-2),
-      var(--color-primary-3)
-    );
-    clip-path: circle(28% at left top);
-  }
-
-  &::after {
-    background: linear-gradient(
-      var(--color-secondary-3),
-      var(--color-secondary-2)
-    );
-    clip-path: circle(28% at right bottom);
-  }
-
   position: relative;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: var(--color-gray-2);
 
   form {
     z-index: 1;
