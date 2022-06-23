@@ -8,7 +8,7 @@ export const Ul = styled.ul`
   color: #000;
   list-style-type: none;
   justify-content: center;
-  gap: 24px;
+  gap: 20px;
 
   li {
     display: flex;
@@ -23,7 +23,6 @@ export const Ul = styled.ul`
     );
     -webkit-backdrop-filter: blur(5px);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    margin: 10px 0;
     border-radius: 16px;
   }
 
