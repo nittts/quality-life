@@ -7,6 +7,7 @@ export const Container = styled.div`
   top: 0;
   left: 0;
   z-index: 99;
+  transition: 0.2s ease-in-out;
 
   @media (max-width: 768px) {
     width: ${({ Extends }) => (Extends ? "60vw" : "15vw")};
@@ -31,23 +32,27 @@ export const Content = styled.ul`
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-flow: row nowrap;
-    margin: 5% 0%;
+    flex-flow: column nowrap;
+    margin: 2% 0%;
     height: 10%;
     width: 100%;
 
     svg {
-      width: ${({ Extends }) => (Extends ? "40%" : "100%")};
-      font-size: 2.5rem;
+      width: 100%;
+      font-size: 2rem;
     }
 
     h2 {
-      text-align: left;
-      width: 60%;
-    }
+      text-align: center;
+      width: 100%;
 
-    p {
-      font-size: 1rem;
+      @media (max-width: 600px) {
+        font-size: 1rem;
+      }
+
+      @media (min-width: 600px) {
+        font-size: 1rem;
+      }
     }
 
     :hover {
@@ -83,6 +88,14 @@ export const Logo = styled.div`
       ::first-letter {
         font-weight: 700;
       }
+    }
+
+    @media (max-width: 600px) {
+      font-size: 2.2rem;
+    }
+
+    @media (min-width: 600px) {
+      font-size: 2.5rem;
     }
   }
 
