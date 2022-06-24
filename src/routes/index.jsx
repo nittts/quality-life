@@ -4,13 +4,12 @@ import { Switch, Route } from "react-router-dom";
 import AboutUs from "../pages/AboutUs";
 import Register from "../pages/Register";
 import Dashboard from "../pages/Dashboard";
+import Home from "../pages/Home";
 
 const Routes = () => {
   return (
     <Switch>
-      <Route exact path={"/"}>
-        <h1>home</h1>
-      </Route>
+      <Route exact path={"/"} component={Home}></Route>
       <Route path={"/register"} component={Register} />
       <Route path={"/login"}>
         <h1>Login</h1>
