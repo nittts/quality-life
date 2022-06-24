@@ -10,8 +10,6 @@ const Global = createGlobalStyle`
     }
 
     body {
-        width: 100vw;
-        min-height: 100vh;
         font-family: 'Inter', sans-serif;
         background: var(--color-gray-2);
 
