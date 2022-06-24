@@ -4,6 +4,7 @@ import { Container } from "./style";
 import { useHistory } from "react-router-dom";
 
 import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
+import Button from "../../components/Button";
 
 const Register = () => {
   const history = useHistory();
@@ -63,13 +64,9 @@ const Register = () => {
 
         <hr />
 
-        <button
-          type="submit"
-          className="primary"
-          onClick={() => history.push("/login")}
-        >
+        <Button type="submit" primary>
           Criar conta
-        </button>
+        </Button>
 
         <p>
           Já tem uma conta? Faça <a href="/login">login</a>.
