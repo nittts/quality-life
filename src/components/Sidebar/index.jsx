@@ -43,7 +43,7 @@ export default function Sidebar() {
           <HiUserGroup />
           {Extends ? <h2>Grupos</h2> : <></>}
         </li>
-        <li onClick={() => goTo("/aboutUs")}>
+        <li onClick={() => goTo("/about-us")}>
           <FaReact />
           {Extends ? <h2>Sobre Nós</h2> : <></>}
         </li>
