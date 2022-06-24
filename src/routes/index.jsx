@@ -1,6 +1,5 @@
 // To do build routes component
 import { Switch, Route } from "react-router-dom";
-import AboutUs from "../pages/AboutUs";
 
 import Register from "../pages/Register";
 
@@ -8,7 +7,7 @@ const Routes = () => {
   return (
     <Switch>
       <Route exact path={"/"}>
-        <h1>Home</h1>
+        <h1>home</h1>
       </Route>
       <Route path={"/register"} component={Register} />
       <Route path={"/login"}>
@@ -18,7 +17,7 @@ const Routes = () => {
         <h1>Dashboard</h1>
       </Route>
       <Route path={"/about-us"}>
-        <AboutUs />
+        <h1>About us</h1>
       </Route>
       <Route path={"*"}>
         <h1>Not found</h1>
