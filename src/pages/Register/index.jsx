@@ -2,6 +2,7 @@
 import { Container } from "./style";
 
 import Input from "../../components/Input";
+import Button from "../../components/Button";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -73,9 +74,9 @@ const Register = () => {
 
         <hr />
 
-        <button type="submit" className="primary">
+        <Button type="submit" primary>
           Criar conta
-        </button>
+        </Button>
 
         <p>
           Já tem uma conta? Faça <Link to="/login">login</Link>
