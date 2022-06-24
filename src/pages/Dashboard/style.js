@@ -24,17 +24,18 @@ export const Content = styled.div`
 
   background-color: red;
 `;
-export const Profile = styled.div`
+export const ProfileContainer = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: flex-start;
   flex-flow: row nowrap;
   background-color: yellow;
   width: 85%;
-  height: 15%;
-  padding: 2%;
+  height: 10%;
+  padding: 0% 2%;
 
   @media (max-width: 768px) {
+    align-items: center;
     width: 100%;
   }
 `;
@@ -50,7 +51,7 @@ export const ListContainer = styled.div`
 
   @media (max-width: 768px) {
     width: 100%;
-    height: 85%;
+    height: 90%;
     flex-flow: column nowrap;
     justify-content: space-evenly;
   }
