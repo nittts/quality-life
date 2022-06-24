@@ -10,6 +10,7 @@ import formSchema from "./formSchema";
 import { Link } from "react-router-dom";
 
 import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
+import Button from "../../components/Button";
 
 const Register = () => {
   const {
