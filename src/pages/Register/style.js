@@ -45,54 +45,6 @@ export const Container = styled.div`
       }
     }
 
-    > div {
-      display: flex;
-      flex-direction: column;
-      text-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.2);
-
-      label {
-        color: var(--color-gray-5);
-        font-weight: 600;
-        text-indent: 12px;
-        font-size: 13px;
-        margin-bottom: 3px;
-      }
-
-      div {
-        padding-left: 12px;
-        display: flex;
-        align-items: center;
-        overflow: hidden;
-        font-size: 15px;
-        border: 1px solid var(--color-gray-4);
-        border-radius: 32px;
-        background: var(--color-gray-2);
-      }
-
-      svg {
-        stroke-width: 3px;
-        color: var(--color-gray-5);
-      }
-
-      input {
-        flex: 1 0 auto;
-        padding: 13px 10px 12px 10px;
-        background: transparent;
-        outline: none;
-        border: none;
-        font-size: 18px;
-        font-weight: 100;
-      }
-
-      span {
-        margin-top: 3px;
-        font-size: 12.5px;
-        padding-left: 10px;
-        color: var(--negative);
-        font-style: italic;
-      }
-    }
-
     button {
       display: flex;
       align-items: center;
