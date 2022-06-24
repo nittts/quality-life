@@ -3,9 +3,9 @@ import styled, { css } from "styled-components";
 export const Container = styled.button`
   min-width: 15rem;
   height: 3rem;
-  border-radius: 1px;
+  border-radius: 4px;
   box-shadow: 0 1.5px 2px rgba(0, 0, 0, 0.3);
-  font-size: 23px;
+  font-size: 16px;
   border: 0;
   cursor: pointer;
   transition: transform 0.4s;
@@ -17,6 +17,7 @@ export const Container = styled.button`
   background: var(--color-secondary-3);
 
   :hover {
+    color: var(----color-gray-5);
     transform: translateY(-4px);
   }
 
@@ -29,6 +30,10 @@ export const Container = styled.button`
     css`
       color: white;
       background: var(--color-tertiary-3);
+
+      &:hover {
+        background: var(--color-tertiary-2);
+      }
     `}
 
   ${({ secondary }) =>
@@ -36,6 +41,10 @@ export const Container = styled.button`
     css`
       color: white;
       background: var(--color-primary-3);
+
+      &:hover {
+        background: var(--color-primary-2);
+      }
     `}
 
   ${({ tertiary }) =>
@@ -44,6 +53,11 @@ export const Container = styled.button`
       color: var(--color-tertiary-3);
       background: var(--color-gray-2);
       border: 2px solid var(--color-tertiary-3) !important;
+
+      &:hover {
+        color: var(--color-tertiary-3);
+        background: var(--color-gray-4);
+      }
     `}
 
     ${({ success }) =>
@@ -51,6 +65,10 @@ export const Container = styled.button`
     css`
       color: var(--color-gray-3);
       background: var(--success);
+
+      &:hover {
+        filter: brightness(0.85);
+      }
     `}
 
     ${({ negative }) =>
@@ -58,5 +76,9 @@ export const Container = styled.button`
     css`
       color: var(--color-gray-3);
       background: var(--negative);
+
+      &:hover {
+        filter: brightness(0.85);
+      }
     `}
 `;
