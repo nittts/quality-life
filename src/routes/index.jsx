@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 
 import AboutUs from "../pages/AboutUs";
 import Register from "../pages/Register";
+import Dashboard from "../pages/Dashboard";
 
 const Routes = () => {
   return (
@@ -15,7 +16,7 @@ const Routes = () => {
         <h1>Login</h1>
       </Route>
       <Route path={"/dashboard"}>
-        <h1>Dashboard</h1>
+        <Dashboard />
       </Route>
       <Route path={"/about-us"} component={AboutUs} />
       <Route path={"*"}>
