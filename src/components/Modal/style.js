@@ -8,6 +8,8 @@ export const Container = styled.div`
   justify-content: center;
   width: 100vw;
   height: 100vh;
+  position: fixed;
+  z-index: 100;
 `;
 
 export const Content = styled.div`
