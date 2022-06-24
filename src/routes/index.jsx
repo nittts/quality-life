@@ -1,5 +1,6 @@
 // To do build routes component
 import { Switch, Route } from "react-router-dom";
+import AboutUs from "../pages/AboutUs";
 
 import Register from "../pages/Register";
 
@@ -17,7 +18,7 @@ const Routes = () => {
         <h1>Dashboard</h1>
       </Route>
       <Route path={"/about-us"}>
-        <h1>About us</h1>
+        <AboutUs />
       </Route>
       <Route path={"*"}>
         <h1>Not found</h1>
