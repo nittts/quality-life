@@ -1,4 +1,4 @@
-import DevCard from "../../components/DevsCard";
+import DevCard from "../../components/DevCard";
 import Sidebar from "../../components/Sidebar";
 import { Container, DevsContainer } from "./style";
 
