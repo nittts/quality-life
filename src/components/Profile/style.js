@@ -12,22 +12,32 @@ export const Container = styled.div`
     background-color: var(--color-gray-5);
     border: 0.3rem solid #fff;
     transition: all 0.2s;
+    width: 3.2rem;
+    height: 3.2rem;
+
+    @media (min-width: 768px) {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
 
     :hover {
       background-color: var(--color-tertiary-3);
       cursor: pointer;
     }
   }
+
   h1 {
     display: flex;
     flex-flow: column nowrap;
-    font-size: 2rem;
-    margin-left: 1%;
+    align-items: flex-start;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-left: 0.5%;
     color: var(--color-gray-5);
-    width: 100%;
-
+    width: 80%;
+    height: 3.2rem;
     span {
-      font-size: 0.8rem;
+      font-size: 0.7rem;
     }
   }
 `;

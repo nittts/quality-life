@@ -30,7 +30,6 @@ export default function Profile() {
   return (
     <Container>
       <Avatar
-        sx={{ width: 72, height: 72 }}
         onMouseOver={() => setUpdateUser(true)}
         onMouseLeave={() => setUpdateUser(false)}
         onClick={() => setOpenModal(true)}
