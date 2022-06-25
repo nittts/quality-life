@@ -8,11 +8,15 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import formSchema from "./formSchema";
 
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import api from "../../services/api";
 
 import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const Register = () => {
+  const history = useHistory();
+
   const {
     register,
     handleSubmit,
@@ -21,7 +25,20 @@ const Register = () => {
     resolver: yupResolver(formSchema),
   });
 
-  const submitCallback = (data) => console.log(data);
+  const submitCallback = (data) => {
+    const { username, email, password } = data;
+    const user = { username, email, password };
+
+    api
+      .post("users/", user)
+      .then((_) => {
+        toast.success("Conta criada com sucesso!");
+        return history.push("/login");
+      })
+      .catch((error) => {
+        toast.error("Este usuário já existe!");
+      });
+  };
 
   return (
     <Container>
