@@ -47,7 +47,7 @@ export default function Profile() {
         <Modal
           setModalState={setOpenModal}
           modalState={openModal}
-          label="Editar Perfil"
+          label="Perfil"
         >
           {/* Children da edição de usuário */}
         </Modal>
