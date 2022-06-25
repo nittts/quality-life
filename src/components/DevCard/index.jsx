@@ -68,10 +68,10 @@ const DevCard = () => {
               <h4>Front-end Developer</h4>
               <span>HTML, CSS, JavaScript, React, TypeScript</span>
               <div>
-                <a href={gitLink}>
+                <a target="_blank" rel="noreferrer" href={gitLink}>
                   <FaGithub size={24} />
                 </a>
-                <a href={linkedinLink}>
+                <a target="_blank" rel="noreferrer" href={linkedinLink}>
                   <FaLinkedin size={24} />
                 </a>
               </div>

@@ -1,16 +1,30 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: ${({ Extends }) => (Extends ? "15vw" : "5vw")};
+  width: ${({ Extends }) => (Extends ? "10vw" : "5vw")};
   height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 99;
+  transition: 0.2s ease-in-out;
+
+  @media (max-width: 1100px) {
+    width: ${({ Extends }) => (Extends ? "15vw" : "5vw")};
+  }
 
   @media (max-width: 768px) {
-    width: ${({ Extends }) => (Extends ? "60vw" : "15vw")};
+    width: ${({ Extends }) => (Extends ? "25vw" : "15vw")};
   }
+
+  @media (max-width: 425px) {
+    width: ${({ Extends }) => (Extends ? "45vw" : "15vw")};
+  }
+
+  @media (max-width: 321px) {
+    width: ${({ Extends }) => (Extends ? "50vw" : "15vw")};
+  }
+
   background: rgba(240, 240, 240, 0.8);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(4.7px);
@@ -31,23 +45,26 @@ export const Content = styled.ul`
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-flow: row nowrap;
-    margin: 5% 0%;
+    flex-flow: column nowrap;
+    margin: 2% 0%;
     height: 10%;
     width: 100%;
 
     svg {
-      width: ${({ Extends }) => (Extends ? "40%" : "100%")};
-      font-size: 2.5rem;
+      font-size: 2rem;
     }
 
     h2 {
-      text-align: left;
-      width: 60%;
-    }
+      text-align: center;
+      width: 100%;
 
-    p {
-      font-size: 1rem;
+      @media (max-width: 600px) {
+        font-size: 1rem;
+      }
+
+      @media (min-width: 600px) {
+        font-size: 1rem;
+      }
     }
 
     :hover {
@@ -65,7 +82,7 @@ export const Logo = styled.div`
   white-space: nowrap;
 
   h1 {
-    font-size: 2.8rem;
+    font-size: 2rem;
     font-family: "Mukta";
     color: var(--color-tertiary-3);
     font-weight: 400;
