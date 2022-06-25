@@ -1,49 +1,55 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  color: #606060;
+  color: var(--color-gray-5);
+  font-family: "Mukta", sans-serif;
 
   p {
     line-height: 1.5;
+    font-size: 18px;
+    margin: 10px 0 50px;
+    letter-spacing: 1px;
+    font-weight: 200;
   }
 
   p > span {
     font-style: italic;
   }
 
-  Button {
-    margin: 50px 0;
+  a {
+    margin: 40px 10px;
+    text-decoration: none;
   }
 
-  Button:hover {
-    color: #606060;
+  a:hover {
+    color: var(--color-gray-5);
   }
 
   div {
     display: flex;
     flex-direction: column;
   }
+
   @media (min-width: 480px) {
     p {
-      font-size: 1.3rem;
+      font-size: 1.6rem;
     }
   }
+
   @media (min-width: 768px) {
     justify-content: center;
     div {
       flex-direction: row;
     }
 
-    Button {
-      margin: 50px 20px;
-    }
-
     p {
-      font-size: 1.8rem;
+      margin: 0;
+      font-size: 3rem;
     }
   }
 `;
@@ -53,8 +59,10 @@ export const Logo = styled.div`
   align-items: center;
   justify-content: center;
   height: 10%;
-  margin: 100px 0 50px;
+  margin: 80px 0 50px;
   white-space: nowrap;
+  font-family: "Mukta", sans-serif;
+
   h1 {
     font-size: 3rem;
     font-family: "Mukta";
@@ -63,6 +71,7 @@ export const Logo = styled.div`
     ::first-letter {
       font-weight: 700;
     }
+
     span {
       display: inline-block;
       color: var(--color-primary-3);
@@ -81,8 +90,9 @@ export const Logo = styled.div`
   }
 
   @media (min-width: 768px) {
+    margin: 0 0 50px;
     h1 {
-      font-size: 7rem;
+      font-size: 7.2rem;
     }
   }
 `;

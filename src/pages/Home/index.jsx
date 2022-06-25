@@ -16,7 +16,7 @@ const Home = () => {
         através de uma
         <span>
           <br />
-          gestão de hábitos mais eficiente.
+          gestão de hábitos eficiente.
         </span>
       </p>
       <div>
