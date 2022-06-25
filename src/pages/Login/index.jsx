@@ -5,6 +5,9 @@ import { useHistory } from "react-router-dom";
 
 import {FaUser, FaLock} from "react-icons/fa";
 
+import Input from "../../components/Input";
+
+import Button from "../../components/Button";
 
 
 const Login = () =>{
@@ -20,6 +23,8 @@ return (
     </h2>
 
     <hr/>
+
+    
 
     <div>
       <p>Usuário</p>

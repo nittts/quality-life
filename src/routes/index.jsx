@@ -5,18 +5,15 @@ import AboutUs from "../pages/AboutUs";
 import Register from "../pages/Register";
 import Dashboard from "../pages/Dashboard";
 import Home from "../pages/Home";
+import Login from "../pages/Login"
 
 const Routes = () => {
   return (
     <Switch>
       <Route exact path={"/"} component={Home}></Route>
       <Route path={"/register"} component={Register} />
-      <Route path={"/login"}>
-        <h1>Login</h1>
-      </Route>
-      <Route path={"/dashboard"}>
-        <Dashboard />
-      </Route>
+      <Route path={"/login"} component={Login}/>   
+      <Route path={"/dashboard"} component={Dashboard}/>        
       <Route path={"/about-us"} component={AboutUs} />
       <Route path={"*"}>
         <h1>Not found</h1>
