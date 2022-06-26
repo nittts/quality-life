@@ -10,6 +10,10 @@ export const Container = styled.div`
   height: 100vh;
   position: fixed;
   z-index: 100;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
 `;
 
 export const Content = styled.div`
@@ -48,20 +52,8 @@ export const Header = styled.div`
     color: var(--color-gray-5);
   }
 
-  > div {
-    width: 5%;
-
-    @media (min-width: 320px) {
-      width: 10%;
-    }
-
-    @media (min-width: 767px) {
-      width: 10%;
-    }
-  }
-
-  button.rose {
-    min-width: 100%;
+  button {
+    min-width: 10%;
     border-radius: 8px;
     font-weight: 700;
   }
