@@ -1,85 +1,97 @@
 // To do build page
-import {Container, Content } from "./style";
+import { Container } from "./style";
 
 import { useHistory } from "react-router-dom";
 
-import {FaUser, FaLock} from "react-icons/fa";
+import { useToken } from "../../providers/token";
+
+import { FaUser, FaLock } from "react-icons/fa";
 
 import Input from "../../components/Input";
-
 import Button from "../../components/Button";
 
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import formSchema from "./formSchema";
+import api from "../../services/api";
+import { toast } from "react-toastify";
 
-const Login = () =>{
-const history = useHistory();
+const Login = () => {
+  const history = useHistory();
+  const { updateToken } = useToken();
 
-return (
-  <Container>
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(formSchema),
+  });
 
-    
-    <form >
-    <h2>
-    Quality<span>Life</span>
-    </h2>
+  const submitCallback = (data) => {
+    api
+      .post("sessions/", data)
+      .then((response) => {
+        const token = response.data.access;
+        updateToken(token);
+        toast.success("Usuário logado com sucesso!");
+        return history.push("/dashboard");
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error("Usuário ou senha incorretos!");
+      });
+  };
 
-    <hr/>
+  return (
+    <Container>
+      <form onSubmit={handleSubmit(submitCallback)}>
+        <h2>
+          Quality<span>Life</span>
+        </h2>
 
-    
+        <hr />
 
-    <div>
-      <p>Usuário</p>
-      <div>
-      <FaUser size={14} />
-      <input type="text" name="username" placeholder="Nome de usuário" />
-      </div>
-      <span>Nome de usuário é obrigatório!</span>
-      
-    </div>
+        <Input
+          label="Usuário"
+          icon={FaUser}
+          type="text"
+          name="username"
+          placeholder="Seu nome de usuário"
+          register={register}
+          error={errors.username?.message}
+        />
 
-    <div>
-      <p>Senha</p>
-      <div>
-      <FaLock size={14} />
-      <input
-        type="password"
-        name="password"
-        placeholder="Uma senha forte"
-      />
-      </div>
-      <span>Senha é obrigatório!</span>
-    </div>
-      
+        <Input
+          label="Senha"
+          icon={FaLock}
+          type="password"
+          name="password"
+          placeholder="Sua senha"
+          register={register}
+          error={errors.password?.message}
+        />
 
-    <button
-      type="submit"
-      className="primaryButton"
-      onClick={() => history.push("/dashboard")}
-    >
-     Entrar
-    </button>
+        <Button type="submit" secondary>
+          Entrar
+        </Button>
 
-    <div className="barOr">
-      <hr/>
-      <p>OU</p>
-      <hr/>
-    </div>
+        <div className="barOr">
+          <hr />
+          <p>OU</p>
+          <hr />
+        </div>
 
-    
-
-    <button
-      type="submit"
-      className="secundaryButton"
-      onClick={() => history.push("/register")}
-    >
-      Cadastrar
-    </button>      
-    </form>
-    
-        
-  
-</Container>
-)
-
+        <Button
+          type="submit"
+          tertiary
+          onClick={() => history.push("/register")}
+        >
+          Cadastrar
+        </Button>
+      </form>
+    </Container>
+  );
 };
 
 export default Login;

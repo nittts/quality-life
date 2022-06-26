@@ -29,7 +29,7 @@ export const Container = styled.div`
       ::first-letter {
         font-weight: 700;
       }
-      /* margin-top: 32px; */
+
       text-align: center;
       font-size: 2.5rem;
       font-weight: 400;
@@ -42,39 +42,6 @@ export const Container = styled.div`
         }
         display: inline-block;
         color: var(--color-primary-3);
-      }
-    }
-
-    button {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      min-width: 180px;
-      padding: 12px 10px;
-      border-radius: 4px;
-      font-size: 16px;
-      border: 0;
-      cursor: pointer;
-      transition: transform 0.4s;
-
-      :hover {
-        transform: translateY(-4px);
-      }
-
-      :active {
-        transform: translateY(4px);
-      }
-    }
-
-    button.primary {
-      color: var(--color-gray-2);
-      font-weight: 500;
-      background: var(--color-tertiary-3);
-
-      :hover {
-        color: var(--color-gray-5);
-        background: var(--color-tertiary-2);
       }
     }
 

@@ -29,10 +29,10 @@ export const Container = styled.button`
     primary &&
     css`
       color: white;
-      background: var(--color-tertiary-3);
+      background: var(--color-primary-3);
 
       &:hover {
-        background: var(--color-tertiary-2);
+        background: var(--color-primary-2);
       }
     `}
 
@@ -40,10 +40,10 @@ export const Container = styled.button`
     secondary &&
     css`
       color: white;
-      background: var(--color-primary-3);
+      background: var(--color-secondary-3);
 
       &:hover {
-        background: var(--color-primary-2);
+        background: var(--color-secondary-2);
       }
     `}
 
