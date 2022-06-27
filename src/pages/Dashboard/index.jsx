@@ -17,7 +17,7 @@ export default function Dashboard() {
         </ProfileContainer>
         <ListContainer>
           <List label="Meus Hábitos">
-            <Card icon={<FiCheckCircle />} isCompleted>
+            <Card icon={<FiCheckCircle />}>
               <h1>Teste</h1>
               <h1>100%</h1>
             </Card>
