@@ -20,7 +20,7 @@ export default function Modal({
     <Container id="modal-background" onClick={(e) => handleCloseModal(e)}>
       <Content>
         <Header>
-          <h1>Editar {label}</h1>
+          <h1>{label}</h1>
           <Button onClick={(e) => setModalState(false)} color="rose">
             X
           </Button>

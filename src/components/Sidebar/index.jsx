@@ -4,7 +4,7 @@ import { Container, Content, Logo } from "./style";
 import { BsGraphUp } from "react-icons/bs";
 import { HiUserGroup } from "react-icons/hi";
 import { FaReact } from "react-icons/fa";
-import { FiLogOut } from "react-icons/fi";
+import { FiLogOut, FiClipboard } from "react-icons/fi";
 import { useHistory } from "react-router-dom";
 
 export default function Sidebar() {
@@ -46,6 +46,10 @@ export default function Sidebar() {
         <li onClick={() => goTo("/about-us")}>
           <FaReact />
           {Extends ? <h2>Sobre Nós</h2> : <></>}
+        </li>
+        <li onClick={() => goTo("/habit")}>
+          <FiClipboard />
+          {Extends ? <h2>Hábitos</h2> : <></>}
         </li>
         <li onClick={() => goTo("/login")}>
           <FiLogOut />
