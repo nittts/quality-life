@@ -4,13 +4,15 @@ import { Container, DevsContainer } from "./style";
 
 const AboutUs = () => {
   return (
-    <Container>
-      <h2>Nossos Dev's</h2>
+    <>
+      <Container>
+        <h2>Nossos Dev's</h2>
+      </Container>
       <DevsContainer>
         <Sidebar />
         <DevCard />
       </DevsContainer>
-    </Container>
+    </>
   );
 };
 

@@ -8,6 +8,8 @@ export const Ul = styled.ul`
   color: #000;
   list-style-type: none;
   justify-content: center;
+  margin-left: 15vw;
+  text-align: center;
   gap: 20px;
 
   li {
@@ -15,7 +17,7 @@ export const Ul = styled.ul`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px 30px;
+    padding: 20px 14px;
     background: linear-gradient(
       137deg,
       rgba(20, 0, 255, 0.5) 0%,
@@ -70,7 +72,12 @@ export const Ul = styled.ul`
   }
 
   @media (min-width: 768px) {
+    margin-left: 5vw;
     flex-direction: row;
+
+    li {
+      padding: 20px 28px;
+    }
   }
 
   @media (min-width: 1024px) {
