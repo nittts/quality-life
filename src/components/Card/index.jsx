@@ -1,11 +1,19 @@
 import { Container, Content } from "./style";
 import { useHistory } from "react-router-dom";
 
-export default function Card({ children, icon, id, isCompleted, goTo }) {
+export default function Card({
+  children,
+  icon,
+  id,
+  isCompleted,
+  goTo,
+  data,
+  ...rest
+}) {
   const history = useHistory();
 
   const whereGoTo = () => {
-    history.push(`/${goTo}/${id}`);
+    history.push(`/${goTo}/${id}`, data);
   };
 
   return (

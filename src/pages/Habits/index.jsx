@@ -6,18 +6,34 @@ import List from "../../components/List";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
 import Modal from "../../components/Modal";
-// import Habit from "../../components/Habit";
+import Habit from "../../components/Habit";
 import { FiCheckCircle } from "react-icons/fi";
-import { useHistory } from "react-router-dom";
+import api from "../../services/api";
+import { useToken } from "../../providers/token";
 
 export default function Habits() {
-  const history = useHistory();
   const [createModal, setCreateModal] = useState(false);
+  const { token } = useToken();
+
+  const setCompletedHabit = (id) => {
+    api
+      .patch(
+        `/habits/${id}`,
+        {
+          Headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+        { achieved: true }
+      )
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
 
   return (
     <Switch>
       <Route path="/habit/:habit_id">
-        <h1>Habito especifico</h1>
+        <Habit />
       </Route>
       <Route path={"/"}>
         <Container>
@@ -29,12 +45,22 @@ export default function Habits() {
                 <Card
                   icon={
                     <FiCheckCircle
-                      onClick={() => console.log("habito completo")}
+                      onClick={() => setCompletedHabit("habit_id")}
                     />
                   }
                   goTo="habit"
                   id="1234"
                   isCompleted={false}
+                  data={{
+                    // objeto de teste
+                    title: "Calistenia a tarde (15 minutos)",
+                    category: "Sáude",
+                    difficulty: "Muito díficil",
+                    frequency: "Diária",
+                    achieved: false,
+                    user: 673,
+                    how_much_achieved: 30,
+                  }}
                 >
                   <h1>Habito</h1>
                   {/* criar a estrutura do hábito especifico */}
