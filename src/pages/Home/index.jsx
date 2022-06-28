@@ -21,10 +21,12 @@ const Home = () => {
       </p>
       <div>
         <Link to="/login">
-          <Button>Entrar</Button>
+          <Button width={330}>Entrar</Button>
         </Link>
         <Link to="/register">
-          <Button primary>Cadastrar</Button>
+          <Button primary width={330}>
+            Cadastrar
+          </Button>
         </Link>
       </div>
     </Container>

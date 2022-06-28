@@ -5,11 +5,41 @@ import { useEffect, useState } from "react";
 import { FaUserEdit } from "react-icons/fa";
 import { useUser } from "../../providers/user";
 import { useToken } from "../../providers/token";
+
+import { useHistory } from "react-router-dom";
+
 import Modal from "../Modal";
+import Input from "../Input";
+import Button from "../Button";
+
+import * as yup from "yup";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export default function Profile() {
   const [updateUser, setUpdateUser] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+
+  const history = useHistory();
+
+  const formSchema = yup.object().shape({
+    habit: yup.string().required("Verifique o valor digitado!"),
+    category: yup.string().required("Verifique o valor digitado!"),
+    frequency: yup.string().required("Verifique o valor digitado!"),
+    achieved: yup.string().required("Verifique o valor digitado!"),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(formSchema),
+  });
+
+  const submitCallback = (data) => {
+    console.log(data);
+  };
 
   //const { user, getUser() }  = useUser();
   //const { token } = useToken();
@@ -49,6 +79,55 @@ export default function Profile() {
           label="Perfil"
         >
           {/* Children da edição de usuário */}
+
+          <form onSubmit={handleSubmit(submitCallback)}>
+            <div className="body-form">
+              <Input
+                label="Hábito"
+                type="text"
+                name="habit"
+                placeholder="Tomar água"
+                register={register}
+                error={errors.habit?.message}
+              />
+
+              <Input
+                label="Categoria"
+                type="text"
+                name="category"
+                placeholder="Saúde"
+                register={register}
+                error={errors.category?.message}
+              />
+
+              <Input
+                label="Frequência"
+                type="text"
+                name="frequency"
+                placeholder="Diária"
+                register={register}
+                error={errors.frequency?.message}
+              />
+
+              <Input
+                label="Atingido"
+                type="text"
+                name="achieved"
+                placeholder="95%"
+                register={register}
+                error={errors.achieved?.message}
+              />
+            </div>
+
+            <div className="footer-form">
+              <Button type="submit" success width={211}>
+                Finalizar edição
+              </Button>
+              <Button type="button" negative width={211}>
+                Excluir hábito
+              </Button>
+            </div>
+          </form>
         </Modal>
       )}
     </Container>

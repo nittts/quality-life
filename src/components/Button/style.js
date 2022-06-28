@@ -1,11 +1,18 @@
 import styled, { css } from "styled-components";
 
 export const Container = styled.button`
-  min-width: 15rem;
-  height: 3rem;
+  /* min-width: 15rem; */
+  width: ${({ width }) =>
+    width
+      ? css`
+          ${width}px
+        `
+      : css`100%`};
+  height: 45px;
   border-radius: 4px;
   box-shadow: 0 1.5px 2px rgba(0, 0, 0, 0.3);
-  font-size: 16px;
+  font-size: 24px;
+  font-weight: 700;
   border: 0;
   cursor: pointer;
   transition: transform 0.4s;

@@ -40,4 +40,25 @@ export const Container = styled.div`
       font-size: 0.7rem;
     }
   }
+
+  .body-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 36px;
+    padding: 40px;
+
+    input {
+      min-width: 300px;
+    }
+  }
+
+  .footer-form {
+    padding-right: 40px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 17px;
+    padding-bottom: 40px;
+    /* background: red; */
+  }
 `;
