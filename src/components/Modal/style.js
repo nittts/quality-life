@@ -17,8 +17,8 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-  width: 50%;
-  height: 90%;
+  /* width: 50%; */
+  /* height: 90%; */
   background: rgba(217, 217, 217, 0.86);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);

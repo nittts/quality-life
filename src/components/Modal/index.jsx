@@ -13,15 +13,14 @@ export default function Modal({
     if (e.target.id === "modal-background") {
       setModalState(false);
     }
-    console.log("click");
   };
 
   return (
     <Container id="modal-background" onClick={(e) => handleCloseModal(e)}>
       <Content>
         <Header>
-          <h1>{label}</h1>
-          <Button onClick={(e) => setModalState(false)} color="rose">
+          <h1>Editar {label}</h1>
+          <Button onClick={(e) => setModalState(false)} color="rose" width={48}>
             X
           </Button>
         </Header>
