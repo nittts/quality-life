@@ -8,9 +8,10 @@ import Card from "../../components/Card";
 import Modal from "../../components/Modal";
 // import Habit from "../../components/Habit";
 import { BsThreeDots } from "react-icons/bs";
+import { useHistory } from "react-router-dom";
 
 export default function Habits() {
-  const [openModal, setOpenModal] = useState(false);
+  const history = useHistory();
   const [createModal, setCreateModal] = useState(false);
 
   return (
@@ -28,7 +29,9 @@ export default function Habits() {
               </Button>
               <List label={"Hábitos"}>
                 <Card
-                  icon={<BsThreeDots onClick={() => setOpenModal(true)} />}
+                  icon={
+                    <BsThreeDots onClick={() => history.push("/habit/14")} />
+                  }
                   goTo="habit"
                   id="1234"
                 >
@@ -40,26 +43,13 @@ export default function Habits() {
           </Content>
         </Container>
 
-        {openModal && (
-          <Modal
-            setModalState={setOpenModal}
-            modalState={openModal}
-            label="Editar Hábito"
-          >
-            <h1>edit modal</h1>
-            {/* criar a estrutura do modal de editar hábito */}
-            <Button success>Salvar Alterações</Button>
-            <Button negative>Remover Hábito</Button>
-          </Modal>
-        )}
-
         {createModal && (
           <Modal
             setModalState={setCreateModal}
             modalState={createModal}
             label="Criar hábito"
           >
-            <h1>edit modal</h1>
+            <h1>create habit modal</h1>
             {/* criar a estrutura do modal de criar hábito */}
             <Button success>Criar Hábito</Button>
           </Modal>
