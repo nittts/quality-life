@@ -10,6 +10,13 @@ export const Container = styled.div`
   @media (max-width: 768px) {
     height: auto;
   }
+
+  > div:nth-of-type(3) {
+    > div {
+      height: 90%;
+      width: 50%;
+    }
+  }
 `;
 
 export const Content = styled.div`
@@ -49,6 +56,13 @@ export const HabitsContainer = styled.div`
     right: 0;
     top: 0;
     margin: 2% 3.5%;
+    width: auto;
+    padding: 0% 2%;
+    background-color: var(--color-primary-3);
+
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
   }
 
   @media (max-width: 768px) {
@@ -58,9 +72,4 @@ export const HabitsContainer = styled.div`
     justify-content: space-evenly;
     margin-top: 5%;
   }
-`;
-
-export const HabitCircle = styled.div`
-  width: 100%;
-  height: 100%;
 `;

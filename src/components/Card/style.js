@@ -26,7 +26,7 @@ export const Content = styled.div`
   padding: 2%;
   width: 95%;
   background: ${({ isCompleted }) =>
-    isCompleted ? "#80D9AE" : "rgba(255, 255, 255, 0.88)"};
+    isCompleted ? "rgba(128, 217, 174, 0.9)" : "rgba(255, 255, 255, 0.88)"};
   border-radius: 3px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(3.4px);

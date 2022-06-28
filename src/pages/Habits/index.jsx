@@ -1,5 +1,5 @@
 import { Switch, Route } from "react-router-dom";
-import { Container, Content, HabitsContainer, HabitCircle } from "./style";
+import { Container, Content, HabitsContainer } from "./style";
 import { useState } from "react";
 import Sidebar from "../../components/Sidebar";
 import List from "../../components/List";
@@ -7,7 +7,7 @@ import Button from "../../components/Button";
 import Card from "../../components/Card";
 import Modal from "../../components/Modal";
 // import Habit from "../../components/Habit";
-import { BsThreeDots } from "react-icons/bs";
+import { FiCheckCircle } from "react-icons/fi";
 import { useHistory } from "react-router-dom";
 
 export default function Habits() {
@@ -24,16 +24,17 @@ export default function Habits() {
           <Sidebar />
           <Content>
             <HabitsContainer>
-              <Button primary onClick={() => setCreateModal(true)}>
-                Criar Hábito
-              </Button>
+              <Button onClick={() => setCreateModal(true)}>Criar Hábito</Button>
               <List label={"Hábitos"}>
                 <Card
                   icon={
-                    <BsThreeDots onClick={() => history.push("/habit/14")} />
+                    <FiCheckCircle
+                      onClick={() => console.log("habito completo")}
+                    />
                   }
                   goTo="habit"
                   id="1234"
+                  isCompleted={false}
                 >
                   <h1>Habito</h1>
                   {/* criar a estrutura do hábito especifico */}
@@ -41,19 +42,19 @@ export default function Habits() {
               </List>
             </HabitsContainer>
           </Content>
-        </Container>
 
-        {createModal && (
-          <Modal
-            setModalState={setCreateModal}
-            modalState={createModal}
-            label="Criar hábito"
-          >
-            <h1>create habit modal</h1>
-            {/* criar a estrutura do modal de criar hábito */}
-            <Button success>Criar Hábito</Button>
-          </Modal>
-        )}
+          {createModal && (
+            <Modal
+              setModalState={setCreateModal}
+              modalState={createModal}
+              label="Criar hábito"
+            >
+              <h1>create habit modal</h1>
+              {/* criar a estrutura do modal de criar hábito */}
+              <Button success>Criar Hábito</Button>
+            </Modal>
+          )}
+        </Container>
       </Route>
     </Switch>
   );
