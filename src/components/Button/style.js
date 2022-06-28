@@ -12,7 +12,6 @@ export const Container = styled.button`
   border-radius: 4px;
   box-shadow: 0 1.5px 2px rgba(0, 0, 0, 0.3);
   font-size: 24px;
-  font-weight: 700;
   border: 0;
   cursor: pointer;
   transition: transform 0.4s;
@@ -36,10 +35,9 @@ export const Container = styled.button`
     primary &&
     css`
       color: white;
-      background: var(--color-primary-3);
-
+      background: var(--color-tertiary-3);
       &:hover {
-        background: var(--color-primary-2);
+        background: var(--color-tertiary-2);
       }
     `}
 
@@ -67,6 +65,7 @@ export const Container = styled.button`
       }
     `}
 
+    
     ${({ success }) =>
     success &&
     css`
