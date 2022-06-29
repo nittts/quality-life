@@ -74,9 +74,7 @@ const Login = () => {
           error={errors.password?.message}
         />
 
-        <Button type="submit" secondary>
-          Entrar
-        </Button>
+        <Button type="submit">Entrar</Button>
 
         <div className="barOr">
           <hr />

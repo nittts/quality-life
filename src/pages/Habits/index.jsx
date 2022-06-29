@@ -23,6 +23,7 @@ export default function Habits() {
   const { user, getUser } = useUser();
   const location = useLocation();
   const [habitList, setHabitList] = useState([]);
+  const [completed, setCompleted] = useState(false);
 
   const {
     register,
@@ -37,6 +38,22 @@ export default function Habits() {
       .patch(
         `/habits/${id}/`,
         { achieved: true, how_much_achieved: 100 },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => getHabits())
+      .catch((err) => console.log(err));
+  };
+
+  const resetHabit = (id) => {
+    console.log(id);
+    api
+      .patch(
+        `/habits/${id}/`,
+        { achieved: false, how_much_achieved: 0 },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -101,13 +118,18 @@ export default function Habits() {
                       <Card
                         icon={
                           <FiCheckCircle
-                            onClick={() => setCompletedHabit(habit.id)}
+                            onClick={() =>
+                              habit.how_much_achieved === 100
+                                ? resetHabit(habit.id)
+                                : setCompletedHabit(habit.id)
+                            }
                           />
                         }
                         goTo="habit"
                         id={habit.id}
                         isCompleted={habit.achieved}
                         data={{ ...user, ...habit }}
+                        key={habit.id}
                       >
                         <h1>
                           {habit.title} - {habit.frequency}

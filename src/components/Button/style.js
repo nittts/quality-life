@@ -58,7 +58,7 @@ export const Container = styled.button`
     tertiary &&
     css`
       color: var(--color-tertiary-3);
-      background: var(--color-gray-2);
+      background: var(--color-white);
       border: 2px solid var(--color-tertiary-3) !important;
 
       &:hover {
