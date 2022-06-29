@@ -108,6 +108,10 @@ export default function Habit() {
             size={smallView ? "50vw" : "30vw"}
           />
           <div>
+            <Button primary onClick={() => history.push("/habit")}>
+              Voltar
+            </Button>
+
             <h1>{state.title}</h1>
             <h2>
               Dificuldade: <span>{state.difficulty}</span>
