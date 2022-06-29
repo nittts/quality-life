@@ -43,7 +43,7 @@ export default function Sidebar() {
           <FiClipboard />
           {Extends ? <h2>Hábitos</h2> : <></>}
         </li>
-        <li onClick={() => goTo("/groups")}>
+        <li onClick={() => history.push("/groups")}>
           <HiUserGroup />
           {Extends ? <h2>Grupos</h2> : <></>}
         </li>
