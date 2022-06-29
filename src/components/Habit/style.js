@@ -7,6 +7,33 @@ export const Container = styled.div`
   width: 100vw;
   height: 100vh;
 
+  > div:nth-of-type(3) {
+    > div {
+      height: auto;
+
+      form {
+        display: flex;
+        flex-flow: column nowrap;
+        padding: 3%;
+        width: 100%;
+
+        button {
+          margin-top: 1%;
+        }
+
+        > div:nth-of-type(5) {
+          div {
+            padding: 5%;
+            input {
+              padding: 0;
+              width: 70%;
+            }
+          }
+        }
+      }
+    }
+  }
+
   @media (max-width: 768px) {
     height: auto;
   }

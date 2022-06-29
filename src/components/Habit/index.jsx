@@ -6,17 +6,54 @@ import { useLocation } from "react-router-dom";
 import Sidebar from "../Sidebar";
 import Button from "../Button";
 import Modal from "../Modal";
+import api from "../../services/api";
+import { useToken } from "../../providers/token";
+import { useHistory } from "react-router-dom/";
+import Input from "../../components/Input";
+import { useForm } from "react-hook-form";
 
 export default function Habit() {
   const location = useLocation();
+  const history = useHistory();
   const { state } = location;
+  const { token } = useToken();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const deleteHabit = () => {
-    // axios delete usando o habit_id
+    api
+      .delete(`/habits/${state.id}/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        history.push("/habit");
+      });
   };
 
   const updateHabit = (data) => {
-    // axios patch usando o habit_id
+    data = {
+      ...data,
+      title: data.title === "" ? state.title : data.title,
+      category: data.category === "" ? state.category : data.category,
+      difficulty: data.difficulty === "" ? state.difficulty : data.difficulty,
+      frequency: data.frequency === "" ? state.frequency : data.frequency,
+      achieved: data.how_much_achieved === "100" ? true : false,
+    };
+
+    api
+      .patch(`/habits/${state.id}/`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => history.push("/habit"))
+      .catch((err) => console.log(err));
   };
 
   const [smallView, setSmallView] = useState(false);
@@ -90,7 +127,9 @@ export default function Habit() {
               <Button success onClick={() => setOpenModal(true)}>
                 Editar Hábito
               </Button>
-              <Button negative>Remover Hábito</Button>
+              <Button negative onClick={deleteHabit}>
+                Remover Hábito
+              </Button>
             </div>
           </div>
         </HabitContainer>
@@ -101,7 +140,50 @@ export default function Habit() {
           modalState={openModal}
           label="Editar Hábito"
         >
-          <h1>construir modal de editar</h1>
+          <form onSubmit={handleSubmit(updateHabit)}>
+            <Input
+              label="Titulo"
+              type="text"
+              name="title"
+              placeholder="Ex: Calistenia à tarde..."
+              register={register}
+              error={errors.title?.message}
+            />
+            <Input
+              label="Categoria"
+              type="text"
+              name="category"
+              placeholder="Ex: Saúde, Musculação..."
+              register={register}
+              error={errors.category?.message}
+            />
+            <Input
+              label="Dificuldade"
+              type="text"
+              name="difficulty"
+              placeholder="Ex: Fácil, Médio, Difícil..."
+              register={register}
+              error={errors.difficulty?.message}
+            />
+            <Input
+              label="Frequência"
+              type="text"
+              name="frequency"
+              placeholder="Ex: Diária, Semanal, Quinzenal..."
+              register={register}
+              error={errors.frequency?.message}
+            />
+            <Input
+              label={`Progresso`}
+              type="range"
+              name="how_much_achieved"
+              register={register}
+              error={errors.how_much_achieved?.message}
+            />
+            <Button success type="submit">
+              Salvar Alterações
+            </Button>
+          </form>
         </Modal>
       )}
     </Container>
