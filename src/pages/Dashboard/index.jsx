@@ -14,7 +14,7 @@ import { useHistory } from "react-router-dom";
 
 export default function Dashboard() {
   const { token } = useToken();
-  const { user, getUser } = useUser();
+  const { user } = useUser();
   const history = useHistory();
   const location = useLocation();
   const [habitList, setHabitList] = useState([]);
@@ -58,7 +58,6 @@ export default function Dashboard() {
 
   useEffect(() => {
     getHabits();
-    getUser(token);
     //eslint-disable-next-line
   }, [location]);
 

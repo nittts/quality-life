@@ -15,11 +15,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import formSchema from "./formSchema";
 import api from "../../services/api";
 import { toast } from "react-toastify";
+import { useUser } from "../../providers/user";
 
 const Login = () => {
   const history = useHistory();
   const { updateToken } = useToken();
-
+  const { getUser } = useUser();
   const {
     register,
     handleSubmit,
@@ -33,6 +34,7 @@ const Login = () => {
       .post("sessions/", data)
       .then((response) => {
         const token = response.data.access;
+        getUser(token);
         updateToken(token);
         toast.success("Usuário logado com sucesso!");
         return history.push("/dashboard");
