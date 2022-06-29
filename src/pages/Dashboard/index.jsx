@@ -112,6 +112,7 @@ export default function Dashboard() {
                     id={habit.id}
                     isCompleted={habit.achieved}
                     data={{ ...user, ...habit }}
+                    key={habit.id}
                   >
                     <h1>
                       {habit.title} - {habit.frequency}

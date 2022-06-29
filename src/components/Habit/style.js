@@ -99,6 +99,14 @@ export const HabitContainer = styled.div`
     justify-content: space-evenly;
     color: var(--color-secondary-3);
 
+    > button {
+      align-self: flex-end;
+      margin-right: 2%;
+      padding: 1%;
+      height: auto;
+      width: auto;
+    }
+
     h1 {
       font-size: 2rem;
 
