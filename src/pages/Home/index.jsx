@@ -24,7 +24,7 @@ const Home = () => {
           <Button width={330}>Entrar</Button>
         </Link>
         <Link to="/register">
-          <Button primary width={330}>
+          <Button secondary width={330}>
             Cadastrar
           </Button>
         </Link>
