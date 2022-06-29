@@ -149,7 +149,7 @@ export default function Habit() {
               label="Titulo"
               type="text"
               name="title"
-              placeholder="Ex: Calistenia à tarde..."
+              placeholder={state.title}
               register={register}
               error={errors.title?.message}
             />
@@ -157,7 +157,7 @@ export default function Habit() {
               label="Categoria"
               type="text"
               name="category"
-              placeholder="Ex: Saúde, Musculação..."
+              placeholder={state.category}
               register={register}
               error={errors.category?.message}
             />
@@ -165,7 +165,7 @@ export default function Habit() {
               label="Dificuldade"
               type="text"
               name="difficulty"
-              placeholder="Ex: Fácil, Médio, Difícil..."
+              placeholder={state.difficulty}
               register={register}
               error={errors.difficulty?.message}
             />
@@ -173,7 +173,7 @@ export default function Habit() {
               label="Frequência"
               type="text"
               name="frequency"
-              placeholder="Ex: Diária, Semanal, Quinzenal..."
+              placeholder={state.frequency}
               register={register}
               error={errors.frequency?.message}
             />
