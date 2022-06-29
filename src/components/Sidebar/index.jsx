@@ -39,6 +39,10 @@ export default function Sidebar() {
           <BsGraphUp />
           {Extends ? <h2>Dashboard</h2> : <></>}
         </li>
+        <li onClick={() => goTo("/habit")}>
+          <FiClipboard />
+          {Extends ? <h2>Hábitos</h2> : <></>}
+        </li>
         <li onClick={() => goTo("/groups")}>
           <HiUserGroup />
           {Extends ? <h2>Grupos</h2> : <></>}
@@ -46,10 +50,6 @@ export default function Sidebar() {
         <li onClick={() => goTo("/about-us")}>
           <FaReact />
           {Extends ? <h2>Sobre Nós</h2> : <></>}
-        </li>
-        <li onClick={() => goTo("/habit")}>
-          <FiClipboard />
-          {Extends ? <h2>Hábitos</h2> : <></>}
         </li>
         <li onClick={() => goTo("/login")}>
           <FiLogOut />
