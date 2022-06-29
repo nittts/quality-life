@@ -10,11 +10,35 @@ export const Container = styled.div`
   @media (max-width: 768px) {
     height: auto;
   }
-
   > div:nth-of-type(3) {
     > div {
-      height: 90%;
-      width: 50%;
+      height: auto;
+      width: auto;
+
+      form {
+        display: flex;
+        flex-flow: column nowrap;
+        padding: 3%;
+        width: 100%;
+
+        > div {
+          margin: 2%;
+        }
+
+        button {
+          margin-top: 5%;
+        }
+
+        > div:nth-of-type(5) {
+          div {
+            padding: 5%;
+            input {
+              padding: 0;
+              width: 70%;
+            }
+          }
+        }
+      }
     }
   }
 `;

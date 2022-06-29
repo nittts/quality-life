@@ -1,34 +1,87 @@
 import { Switch, Route } from "react-router-dom";
 import { Container, Content, HabitsContainer } from "./style";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar";
 import List from "../../components/List";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
 import Modal from "../../components/Modal";
 import Habit from "../../components/Habit";
-import { FiCheckCircle } from "react-icons/fi";
 import api from "../../services/api";
+import Input from "../../components/Input";
 import { useToken } from "../../providers/token";
+import { FiCheckCircle } from "react-icons/fi";
+import { useUser } from "../../providers/user";
+import { useLocation } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import formSchema from "./FormSchema";
 
 export default function Habits() {
   const [createModal, setCreateModal] = useState(false);
   const { token } = useToken();
+  const { user, getUser } = useUser();
+  const location = useLocation();
+  const [habitList, setHabitList] = useState([]);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(formSchema) });
 
   const setCompletedHabit = (id) => {
+    console.log(id);
     api
       .patch(
-        `/habits/${id}`,
+        `/habits/${id}/`,
+        { achieved: true, how_much_achieved: 100 },
         {
-          Headers: {
+          headers: {
             Authorization: `Bearer ${token}`,
           },
-        },
-        { achieved: true }
+        }
       )
-      .then((res) => console.log(res))
+      .then((res) => getHabits())
       .catch((err) => console.log(err));
   };
+
+  const getHabits = () => {
+    api
+      .get("habits/personal/", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => setHabitList(res.data))
+      .catch((err) => console.log(err));
+  };
+
+  const registerHabit = (data) => {
+    api
+      .post(
+        `/habits/`,
+        { ...data, achieved: false, how_much_achieved: 0, user: user.id },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        getHabits();
+        setCreateModal(false);
+        reset();
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    getUser(token);
+    getHabits();
+    //eslint-disable-next-line
+  }, [location]);
 
   return (
     <Switch>
@@ -42,29 +95,27 @@ export default function Habits() {
             <HabitsContainer>
               <Button onClick={() => setCreateModal(true)}>Criar Hábito</Button>
               <List label={"Hábitos"}>
-                <Card
-                  icon={
-                    <FiCheckCircle
-                      onClick={() => setCompletedHabit("habit_id")}
-                    />
-                  }
-                  goTo="habit"
-                  id="1234"
-                  isCompleted={false}
-                  data={{
-                    // objeto de teste
-                    title: "Calistenia a tarde (15 minutos)",
-                    category: "Sáude",
-                    difficulty: "Muito díficil",
-                    frequency: "Diária",
-                    achieved: false,
-                    user: 673,
-                    how_much_achieved: 30,
-                  }}
-                >
-                  <h1>Habito</h1>
-                  {/* criar a estrutura do hábito especifico */}
-                </Card>
+                {habitList &&
+                  habitList.map((habit) => {
+                    return (
+                      <Card
+                        icon={
+                          <FiCheckCircle
+                            onClick={() => setCompletedHabit(habit.id)}
+                          />
+                        }
+                        goTo="habit"
+                        id={habit.id}
+                        isCompleted={habit.achieved}
+                        data={{ ...user, ...habit }}
+                      >
+                        <h1>
+                          {habit.title} - {habit.frequency}
+                        </h1>
+                        <h1>{habit.how_much_achieved}%</h1>
+                      </Card>
+                    );
+                  })}
               </List>
             </HabitsContainer>
           </Content>
@@ -75,9 +126,43 @@ export default function Habits() {
               modalState={createModal}
               label="Criar hábito"
             >
-              <h1>create habit modal</h1>
-              {/* criar a estrutura do modal de criar hábito */}
-              <Button success>Criar Hábito</Button>
+              <form onSubmit={handleSubmit(registerHabit)}>
+                <Input
+                  label="Titulo"
+                  type="text"
+                  name="title"
+                  placeholder="Ex: Calistenia à tarde..."
+                  register={register}
+                  error={errors.title?.message}
+                />
+                <Input
+                  label="Categoria"
+                  type="text"
+                  name="category"
+                  placeholder="Ex: Saúde, Musculação..."
+                  register={register}
+                  error={errors.category?.message}
+                />
+                <Input
+                  label="Dificuldade"
+                  type="text"
+                  name="difficulty"
+                  placeholder="Ex: Fácil, Médio, Difícil..."
+                  register={register}
+                  error={errors.difficulty?.message}
+                />
+                <Input
+                  label="Frequência"
+                  type="text"
+                  name="frequency"
+                  placeholder="Ex: Diária, Semanal, Quinzenal..."
+                  register={register}
+                  error={errors.frequency?.message}
+                />
+                <Button success type="submit">
+                  Criar Hábito
+                </Button>
+              </form>
             </Modal>
           )}
         </Container>

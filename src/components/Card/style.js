@@ -36,6 +36,10 @@ export const Content = styled.div`
   color: var(--color-gray-5);
   font-size: 1rem;
 
+  h1 {
+    text-transform: capitalize;
+  }
+
   transition: 0.2s ease-in-out;
   :hover {
     cursor: pointer;
