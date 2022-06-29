@@ -31,6 +31,7 @@ export const Container = styled.button`
     transform: translateY(4px);
   }
 
+  //botão fundo rosa
   ${({ primary }) =>
     primary &&
     css`
@@ -41,17 +42,18 @@ export const Container = styled.button`
       }
     `}
 
+  //botão fundo verde
   ${({ secondary }) =>
     secondary &&
     css`
       color: white;
-      background: var(--color-secondary-3);
+      background: var(--color-primary-3);
 
       &:hover {
-        background: var(--color-secondary-2);
+        background: var(--color-primary-2);
       }
     `}
-
+//botão fundo cinza borda rosa
   ${({ tertiary }) =>
     tertiary &&
     css`
@@ -65,7 +67,7 @@ export const Container = styled.button`
       }
     `}
 
-    
+    //botão verde sucesso
     ${({ success }) =>
     success &&
     css`
@@ -76,7 +78,7 @@ export const Container = styled.button`
         filter: brightness(0.85);
       }
     `}
-
+//botão vermelho
     ${({ negative }) =>
     negative &&
     css`

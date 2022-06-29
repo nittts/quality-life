@@ -15,11 +15,11 @@ export default function GroupsCard() {
           <ButtonsContainer>
             <SearchInput />
             <Button>Meus grupos</Button>
-            <Button primary>Novo Grupo</Button>
+            <Button secondary>Novo Grupo</Button>
           </ButtonsContainer>
           <ButtonsBotContainer>
-            <Button tertiary>Anterior</Button>
-            <Button tertiary>Próximo</Button>
+            <Button primary>Anterior</Button>
+            <Button primary>Próximo</Button>
           </ButtonsBotContainer>
         </ListContainer>
       </Container>
