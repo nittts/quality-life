@@ -22,7 +22,7 @@ export default function Sidebar() {
   };
 
   const logout = () => {
-    history.push("/login");
+    history.push("/");
     updateToken("");    
   }; 
 
