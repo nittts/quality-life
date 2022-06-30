@@ -95,7 +95,6 @@ export default function Habits() {
   };
 
   useEffect(() => {
-    getUser(token);
     getHabits();
     //eslint-disable-next-line
   }, [location]);
