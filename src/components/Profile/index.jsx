@@ -41,7 +41,7 @@ export default function Profile() {
     console.log(data);
   };
 
-  //const { user, getUser() }  = useUser();
+  const { user, getUser() }  = useUser();
   //const { token } = useToken();
 
   //   const fullName = user.username.split("");
