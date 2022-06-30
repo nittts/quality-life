@@ -3,7 +3,9 @@ import { createContext, useContext, useState } from "react";
 export const TokenContext = createContext();
 
 export const TokenProvider = ({ children }) => {
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState(
+    JSON.parse(localStorage.getItem("@QualityLife:token"))
+  );
 
   const updateToken = (newToken) => {
     setToken(newToken);
