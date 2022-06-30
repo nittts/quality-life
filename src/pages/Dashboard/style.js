@@ -25,6 +25,7 @@ export const Content = styled.div`
     justify-content: flex-start;
   }
 `;
+
 export const ProfileContainer = styled.div`
   display: flex;
   align-items: flex-end;

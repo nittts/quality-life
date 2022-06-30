@@ -8,7 +8,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import NotFound from "../pages/NotFound";
 import Habits from "../pages/Habits";
-import { Groups } from "../pages/Groups";
+import Groups from "../pages/Groups";
 
 const Routes = () => {
   return (
