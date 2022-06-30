@@ -91,7 +91,7 @@ const Register = () => {
 
         <hr />
 
-        <Button type="submit" primary>
+        <Button type="submit" secondary>
           Criar conta
         </Button>
 

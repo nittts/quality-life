@@ -56,6 +56,22 @@ export default function Dashboard() {
       .catch((err) => console.log(err));
   };
 
+  const resetHabit = (id) => {
+    console.log(id);
+    api
+      .patch(
+        `/habits/${id}/`,
+        { achieved: false, how_much_achieved: 0 },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => getHabits())
+      .catch((err) => console.log(err));
+  };
+
   useEffect(() => {
     getHabits();
     //eslint-disable-next-line
@@ -104,7 +120,9 @@ export default function Dashboard() {
                     icon={
                       <FiCheckCircle
                         onClick={() =>
-                          upHabit(habit.id, habit.how_much_achieved)
+                          habit.how_much_achieved === 100
+                            ? resetHabit(habit.id)
+                            : upHabit(habit.id, habit.how_much_achieved)
                         }
                       />
                     }
@@ -112,6 +130,7 @@ export default function Dashboard() {
                     id={habit.id}
                     isCompleted={habit.achieved}
                     data={{ ...user, ...habit }}
+                    key={habit.id}
                   >
                     <h1>
                       {habit.title} - {habit.frequency}
