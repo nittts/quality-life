@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import api from "../../services/api";
+import axios from "axios";
 
 import { FiUser } from "react-icons/fi";
 import { FaTasks, FaFlag } from "react-icons/fa";
@@ -19,29 +20,51 @@ import Button from "../../components/Button";
 
 export default function GroupsCard() {
   const [groups, setGroups] = useState([]);
+  const [page, setPage] = useState(1);
+  const [requestInfo, setRequestInfo] = useState({});
+
   const { token } = useToken();
 
   useEffect(() => {
     api
-      .get("groups/")
-      .then((response) => {
-        setGroups(response.data.results);
-      })
-      .catch((error) => console.log(error));
-  }, []);
-
-  const handleMyGroups = () => {
-    api
-      .get("groups/subscriptions/", {
+      .get(`groups/?page=${page}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then((response) => {
-        console.log(response);
-        console.log(token);
+        setRequestInfo(response.data);
+        setGroups(response.data.results);
       })
       .catch((error) => console.log(error));
+  }, [page]);
+
+  // const handleMyGroups = () => {
+  //   axios
+  //     .get(`https://kenzie-habits.herokuapp.com/groups/?page=${page}`, {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     })
+  //     .then((response) => {
+  //       // console.log(response);
+  //       // console.log(token);
+  //       console.log(response);
+  //       setGroups(response.data);
+  //     })
+  //     .catch((error) => console.log(error));
+  // };
+
+  const previousPage = () => {
+    if (page > 1) {
+      setPage(page - 1);
+    }
+  };
+
+  const nextPage = () => {
+    if (requestInfo.next !== null) {
+      setPage(page + 1);
+    }
   };
 
   return (
@@ -49,7 +72,7 @@ export default function GroupsCard() {
       <ListContainer>
         <ButtonsContainer>
           <SearchInput />
-          <Button onClick={handleMyGroups}>Meus grupos</Button>
+          <Button>Meus grupos</Button>
           <Button secondary>Novo Grupo</Button>
         </ButtonsContainer>
         <GroupsContainer>
@@ -82,8 +105,20 @@ export default function GroupsCard() {
           ))}
         </GroupsContainer>
         <ButtonsBotContainer>
-          <Button primary>Anterior</Button>
-          <Button primary>Próximo</Button>
+          <Button
+            primary
+            onClick={previousPage}
+            disabled={requestInfo.previous === null && "disabled"}
+          >
+            Anterior
+          </Button>
+          <Button
+            primary
+            onClick={nextPage}
+            disabled={requestInfo.next === null && "disabled"}
+          >
+            Próximo
+          </Button>
         </ButtonsBotContainer>
       </ListContainer>
     </Container>
