@@ -38,25 +38,25 @@ export default function Profile() {
   });
 
   const submitCallback = (data) => {
+    
     console.log(data);
   };
 
-  //const { user, getUser() }  = useUser();
-  //const { token } = useToken();
+  const { user }  = useUser();
+ // const { token } = useToken();
 
-  //   const fullName = user.username.split("");
-  //   const getUserLetters = () => {
-  //     const initials = fullName.shift().charAt(0) + fullName.pop().charAt(0);
-  //     return initials.toUpperCase();
-  //   };
+ 
+ const getUserLetters = () => {
+   const fullName = user.username.split("");
+   const initials = fullName.shift().charAt(0) + fullName.pop().charAt(0);
+   return initials.toUpperCase();
+ };
 
-  //   useEffect(() => {
-  // getUser(token);
-  //   }, []);
-  //
+     
+  
 
   // descomentar quando a funcionalidade de login estiver funcionando e gerando um token do usuário;
-
+      console.log(user)
   return (
     <Container>
       <Avatar
@@ -64,12 +64,12 @@ export default function Profile() {
         onMouseLeave={() => setUpdateUser(false)}
         onClick={() => setOpenModal(true)}
       >
-        {updateUser ? <FaUserEdit /> : <> WB{/*user && getUserLetters() */} </>}
+        {updateUser ? <FaUserEdit /> : <> {user && getUserLetters() } </>}
         {/* inciais do usuário */}
       </Avatar>
       <h1>
         Olá,
-        <span> William Baierle Charqueiro{/*user && user.username*/}!</span>
+        <span>{user && user.username}!</span>
       </h1>
       {/* nome do usuário */}
       {openModal && (
@@ -83,49 +83,30 @@ export default function Profile() {
           <form onSubmit={handleSubmit(submitCallback)}>
             <div className="body-form">
               <Input
-                label="Hábito"
+                label="Nome"
                 type="text"
                 name="habit"
-                placeholder="Tomar água"
+                placeholder={user.username}
                 register={register}
                 error={errors.habit?.message}
               />
 
               <Input
-                label="Categoria"
+                label="Email"
                 type="text"
                 name="category"
-                placeholder="Saúde"
+                placeholder={user.email}
                 register={register}
                 error={errors.category?.message}
               />
-
-              <Input
-                label="Frequência"
-                type="text"
-                name="frequency"
-                placeholder="Diária"
-                register={register}
-                error={errors.frequency?.message}
-              />
-
-              <Input
-                label="Atingido"
-                type="text"
-                name="achieved"
-                placeholder="95%"
-                register={register}
-                error={errors.achieved?.message}
-              />
+              
             </div>
 
             <div className="footer-form">
               <Button type="submit" success width={211}>
-                Finalizar edição
+                Salvar
               </Button>
-              <Button type="button" negative width={211}>
-                Excluir hábito
-              </Button>
+              
             </div>
           </form>
         </Modal>
