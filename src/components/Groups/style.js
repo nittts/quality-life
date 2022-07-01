@@ -90,10 +90,8 @@ export const GroupsContainer = styled.ul`
     }
 
     footer {
-      .activities {
-        position: absolute;
-        right: 18px;
-      }
+      display: flex;
+      justify-content: space-between;
     }
   }
 `;
