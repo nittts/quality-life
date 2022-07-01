@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const SearchContainer = styled.div`
+export const SearchContainer = styled.form`
   width: 240px;
   height: 45px;
   background-color: var(--color-gray-3);
