@@ -34,6 +34,8 @@ const Login = () => {
       .post("sessions/", data)
       .then((response) => {
         const token = response.data.access;
+        localStorage.clear();
+        localStorage.setItem("@QualityLife:token", JSON.stringify(token));
         getUser(token);
         updateToken(token);
         toast.success("Usuário logado com sucesso!");
