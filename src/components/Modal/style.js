@@ -28,7 +28,7 @@ export const Content = styled.div`
 
   @media (max-width: 767px) {
     width: 95%;
-    height: 95%;
+    height: auto;   
   }
 `;
 
@@ -53,7 +53,7 @@ export const Header = styled.div`
   }
 
   button {
-    min-width: 10%;
+    min-width: 10%;    
     border-radius: 8px;
     font-weight: 700;
   }
