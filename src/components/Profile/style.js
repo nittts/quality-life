@@ -7,6 +7,7 @@ export const Container = styled.div`
   padding: 0.3%;
   width: 100%;
   font-style: "Inter", sans-serif;
+  
 
   > div:nth-of-type(1) {
     background-color: var(--color-gray-5);
@@ -39,9 +40,9 @@ export const Container = styled.div`
     span {
       font-size: 0.7rem;
     }
-  }
+  } 
 
-  .body-form {
+  .content-form {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
@@ -51,6 +52,12 @@ export const Container = styled.div`
     input {
       min-width: 300px;
     }
+
+    @media(max-width: 768px){
+      display: flex;
+      flex-flow: column nowrap;
+      padding: 3%; 
+    }
   }
 
   .footer-form {
@@ -59,6 +66,9 @@ export const Container = styled.div`
     justify-content: flex-end;
     gap: 17px;
     padding-bottom: 40px;
-    /* background: red; */
+
+    @media(max-width: 768px){        
+      padding-top: 10px; 
+    }    
   }
 `;
