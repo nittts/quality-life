@@ -1,5 +1,5 @@
 import { Switch, Route } from "react-router-dom";
-import { Container, Content, HabitsContainer } from "./style";
+import { Container, Content, HabitsContainer, ProfileContainer } from "./style";
 import { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar";
 import List from "../../components/List";
@@ -16,6 +16,7 @@ import { useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import formSchema from "./FormSchema";
+import Profile from "../../components/Profile";
 
 export default function Habits() {
   const [createModal, setCreateModal] = useState(false);
@@ -108,6 +109,9 @@ export default function Habits() {
         <Container>
           <Sidebar />
           <Content>
+            <ProfileContainer>
+              <Profile />
+            </ProfileContainer>
             <HabitsContainer>
               <Button onClick={() => setCreateModal(true)}>Criar Hábito</Button>
               <List label={"Hábitos"}>

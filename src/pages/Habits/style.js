@@ -1,5 +1,21 @@
 import styled from "styled-components";
 
+export const ProfileContainer = styled.div`
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  flex-flow: row nowrap;
+  width: 85%;
+  height: 10%;
+  padding: 0% 2%;
+
+  @media (max-width: 768px) {
+    align-items: center;
+    height: 15%;
+    width: 100%;
+  }
+`;
+
 export const Container = styled.div`
   display: flex;
   align-items: center;
