@@ -16,6 +16,7 @@ export default function Habit() {
   const location = useLocation();
   const history = useHistory();
   const { state } = location;
+  console.log(state);
   const { token } = useToken();
 
   const {

@@ -59,6 +59,7 @@ export const GroupsContainer = styled.ul`
     border-radius: 4px;
     background: var(--color-white);
     box-shadow: 0 4px 4px 1px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
 
     header {
       h2 {
