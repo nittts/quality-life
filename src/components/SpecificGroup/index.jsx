@@ -42,8 +42,6 @@ export default function SpecificGroup() {
     minute: "numeric",
   };
 
-  console.log(goals);
-
   /* ------------------------- Group related requests ------------------------- */
 
   const getGroupGoals = () => {
@@ -83,19 +81,29 @@ export default function SpecificGroup() {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((res) => toast.success("Saiu do grupo com sucesso!"))
+      .then((res) => {
+        toast.success("Saiu do grupo com sucesso!");
+        reload();
+      })
       .catch((err) => toast.error("fail"));
   };
 
   const subscribeGroup = () => {
     api
-      .post(`/groups/${group_id}/subscribe/`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+      .post(
+        `/groups/${group_id}/subscribe/`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        toast.success("Se inscreveu no grupo com sucesso!");
+        reload();
       })
-      .then((res) => toast.success("Se inscreveu no grupo com sucesso!"))
-      .catch((err) => toast.error("fail"));
+      .catch((err) => console.log(err));
   };
 
   const editGroup = () => {
@@ -292,20 +300,10 @@ export default function SpecificGroup() {
             >
               Editar Grupo
             </Button>
-            <Button
-              success
-              disabled={
-                users_on_group && users_on_group.includes(user) ? true : false
-              }
-            >
+            <Button success onClick={subscribeGroup}>
               Inscrever-se
             </Button>
-            <Button
-              negative
-              disabled={
-                users_on_group && users_on_group.includes(user) ? false : true
-              }
-            >
+            <Button negative onClick={unsubscribeGroup}>
               Desinscrever-se
             </Button>
           </ButtonsContainer>
