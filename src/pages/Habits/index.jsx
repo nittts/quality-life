@@ -1,7 +1,14 @@
 import { Switch, Route } from "react-router-dom";
-import { Container, Content, HabitsContainer } from "./style";
+import {
+  Container,
+  Content,
+  HabitsContainer,
+  ProfileContainer,
+  Header,
+} from "./style";
 import { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar";
+import Profile from "../../components/Profile";
 import List from "../../components/List";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
@@ -108,6 +115,9 @@ export default function Habits() {
         <Container>
           <Sidebar />
           <Content>
+            <Header>
+              <Profile />
+            </Header>
             <HabitsContainer>
               <Button onClick={() => setCreateModal(true)}>Criar Hábito</Button>
               <List label={"Hábitos"}>

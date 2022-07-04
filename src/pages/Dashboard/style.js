@@ -18,7 +18,7 @@ export const Content = styled.div`
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 
   @media (max-width: 768px) {
     width: 85%;
@@ -27,19 +27,9 @@ export const Content = styled.div`
 `;
 
 export const ProfileContainer = styled.div`
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
-  flex-flow: row nowrap;
-  width: 85%;
-  height: 10%;
-  padding: 0% 2%;
-
-  @media (max-width: 768px) {
-    align-items: center;
-    height: 15%;
-    width: 100%;
-  }
+  width: 75vw;
+  margin: 0 auto;
+  padding: 44px 0;
 `;
 
 export const ListContainer = styled.div`
@@ -47,8 +37,8 @@ export const ListContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-flow: row nowrap;
-  width: 85%;
-  height: 75%;
+  width: 75vw;
+  height: 70%;
   background: rgba(255, 255, 255, 0.83);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
