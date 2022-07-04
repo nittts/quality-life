@@ -43,6 +43,7 @@ export default function GroupsCard() {
   const [requestInfo, setRequestInfo] = useState({});
   const history = useHistory();
   const { token } = useToken();
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     api
@@ -57,6 +58,32 @@ export default function GroupsCard() {
       })
       .catch((error) => console.log(error));
   }, [page]);
+
+  // const handleMyGroups = () => {
+  //   axios
+  //     .get(`https://kenzie-habits.herokuapp.com/groups/?page=${page}`, {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     })
+  //     .then((response) => {
+  //       // console.log(response);
+  //       // console.log(token);
+  //       console.log(response);
+  //       setGroups(response.data);
+  //     })
+  //     .catch((error) => console.log(error));
+  // };
+
+  const searchGroup = () => {
+    api
+      .get(`groups/?page=1&search=${search}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => setGroups(res.data.results));
+  };
 
   const previousPage = () => {
     if (page > 1) {
@@ -110,11 +137,9 @@ export default function GroupsCard() {
     <Container>
       <ListContainer>
         <ButtonsContainer>
-          <SearchInput />
-          <Button onClick={handleMyGroups}>Meus grupos</Button>
-          <Button secondary onClick={() => setOpenModal(true)}>
-            Novo Grupo
-          </Button>
+          <SearchInput OnClick={searchGroup} setValue={setSearch} />
+          <Button>Meus grupos</Button>
+          <Button secondary>Novo Grupo</Button>
         </ButtonsContainer>
         <GroupsContainer>
           {groups.map((group) => (

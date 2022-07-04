@@ -21,7 +21,7 @@ export const SearchContainer = styled.form`
   }
 
   input {
-    width: 230px;
+    width: 90%;
     height: 45px;
     font-size: 18px;
     padding-left: 10px;
@@ -35,7 +35,7 @@ export const SearchContainer = styled.form`
   button {
     display: flex;
     align-items: center;
-    padding-right: 10px;
+    width: 10%;
   }
 
   button:hover {
