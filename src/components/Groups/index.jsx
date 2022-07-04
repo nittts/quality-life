@@ -25,6 +25,7 @@ export default function GroupsCard() {
   const [requestInfo, setRequestInfo] = useState({});
   const history = useHistory();
   const { token } = useToken();
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     api
@@ -56,6 +57,16 @@ export default function GroupsCard() {
   //     .catch((error) => console.log(error));
   // };
 
+  const searchGroup = () => {
+    api
+      .get(`groups/?page=1&search=${search}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => setGroups(res.data.results));
+  };
+
   const previousPage = () => {
     if (page > 1) {
       setPage(page - 1);
@@ -72,7 +83,7 @@ export default function GroupsCard() {
     <Container>
       <ListContainer>
         <ButtonsContainer>
-          <SearchInput />
+          <SearchInput OnClick={searchGroup} setValue={setSearch} />
           <Button>Meus grupos</Button>
           <Button secondary>Novo Grupo</Button>
         </ButtonsContainer>
