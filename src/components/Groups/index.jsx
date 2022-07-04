@@ -17,12 +17,13 @@ import { useToken } from "../../providers/token";
 
 import SearchInput from "../../components/Search";
 import Button from "../../components/Button";
+import { useHistory } from "react-router-dom";
 
 export default function GroupsCard() {
   const [groups, setGroups] = useState([]);
   const [page, setPage] = useState(1);
   const [requestInfo, setRequestInfo] = useState({});
-
+  const history = useHistory();
   const { token } = useToken();
 
   useEffect(() => {
@@ -77,7 +78,10 @@ export default function GroupsCard() {
         </ButtonsContainer>
         <GroupsContainer>
           {groups.map((group) => (
-            <li key={group.id}>
+            <li
+              key={group.id}
+              onClick={() => history.push(`/groups/${group.id}/`)}
+            >
               <header>
                 <h2>{group.name}</h2>
                 <div className="category-and-author">

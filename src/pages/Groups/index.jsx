@@ -21,20 +21,33 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Sidebar from "../../components/Sidebar";
 import GroupsCard from "../../components/Groups";
 import Profile from "../../components/Profile";
-// import GroupsCard from "../../components/Groups";
+import SpecificGroup from "../../components/SpecificGroup";
 
 export default function Groups() {
   return (
-    <>
-      <Header>
-        <Profile />
-      </Header>
-      <Container>
-        <Sidebar />
-        <Content>
-          <GroupsCard />
-        </Content>
-      </Container>
-    </>
+    <Switch>
+      <Route exact path={"/groups/:group_id/"}>
+        <Container>
+          <Sidebar />
+          <Content>
+            <Header>
+              <Profile />
+            </Header>
+            <SpecificGroup />
+          </Content>
+        </Container>
+      </Route>
+      <Route path={"/"}>
+        <Container>
+          <Sidebar />
+          <Content>
+            <Header>
+              <Profile />
+            </Header>
+            <GroupsCard />
+          </Content>
+        </Container>
+      </Route>
+    </Switch>
   );
 }
