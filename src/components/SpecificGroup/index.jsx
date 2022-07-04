@@ -407,7 +407,7 @@ export default function SpecificGroup() {
               flexDirection: "column",
               gap: "16px",
               padding: "16px",
-              minWidth: "320px",
+              minWidth: "310px",
             }}
           >
             <Input
