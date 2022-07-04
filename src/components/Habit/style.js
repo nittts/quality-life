@@ -9,27 +9,51 @@ export const Container = styled.div`
 
   > div:nth-of-type(3) {
     > div {
-      height: auto;
+      display: flex;
+      justify-content: center;
+      flex-flow: column nowrap;
+      align-items: center;
+      width: 40%;
 
       form {
         display: flex;
-        flex-flow: column nowrap;
+        align-items: center;
+        justify-content: center;
+        flex-flow: row wrap;
         padding: 3%;
         width: 100%;
+
+        > div {
+          margin: 1%;
+        }
 
         button {
           margin-top: 1%;
         }
 
         > div:nth-of-type(5) {
+          width: 50%;
+
           div {
             padding: 5%;
             input {
               padding: 0;
-              width: 70%;
+              width: 100%;
             }
           }
+
+          @media (min-width: 768px) {
+            width: 100%;
+          }
+
+          @media (min-width: 1100px) {
+            width: 50%;
+          }
         }
+      }
+
+      @media (max-width: 768px) {
+        width: auto;
       }
     }
   }
