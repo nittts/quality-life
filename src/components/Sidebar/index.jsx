@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Container, Content, Logo } from "./style";
-import { useToken } from "../../providers/token"
+import { useToken } from "../../providers/token";
 import { BsGraphUp } from "react-icons/bs";
 import { HiUserGroup } from "react-icons/hi";
 import { FaReact } from "react-icons/fa";
@@ -11,7 +11,7 @@ import { useHistory } from "react-router-dom";
 export default function Sidebar() {
   const [Extends, setExtends] = useState(false);
   const history = useHistory();
-  const {updateToken} = useToken();
+  const { updateToken } = useToken();
 
   const handleExtend = () => {
     setExtends(!Extends);
@@ -23,8 +23,8 @@ export default function Sidebar() {
 
   const logout = () => {
     history.push("/");
-    updateToken("");    
-  }; 
+    localStorage.clear();
+  };
 
   return (
     <Container Extends={Extends}>
