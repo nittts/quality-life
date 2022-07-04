@@ -23,7 +23,8 @@ import { toast } from "react-toastify";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import formSchemaEditGroup from "./formSchemaNewGroup";
+import formSchemaEditGroup from "./formSchemaEditGroup";
+import Input from "../Input";
 
 export default function SpecificGroup() {
   const params = useParams();
@@ -126,7 +127,11 @@ export default function SpecificGroup() {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((res) => console.log(res));
+      .then((res) => {
+        toast.success("Grupo editado com sucesso!");
+        reload();
+        setGroupModal(false);
+      });
   };
 
   const [groupModal, setGroupModal] = useState(false);
@@ -395,7 +400,44 @@ export default function SpecificGroup() {
           modalState={groupModal}
           setModalState={setGroupModal}
         >
-          Teste
+          <form
+            onSubmit={handleSubmit(editGroup)}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "16px",
+              padding: "16px",
+              minWidth: "320px",
+            }}
+          >
+            <Input
+              label="Nome"
+              type="text"
+              name="name"
+              placeholder="Nome"
+              register={register}
+              error={errors.name?.message}
+            />
+            <Input
+              label="Descrição"
+              type="text"
+              name="description"
+              placeholder="Descrição"
+              register={register}
+              error={errors.description?.message}
+            />
+            <Input
+              label="Categoria"
+              type="text"
+              name="category"
+              placeholder="Categoria"
+              register={register}
+              error={errors.category?.message}
+            />
+            <Button success type="submit">
+              Novo grupo
+            </Button>
+          </form>
         </Modal>
       )}
     </ModalContainer>
