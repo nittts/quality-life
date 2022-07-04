@@ -19,8 +19,8 @@ import { useUser } from "../../providers/user";
 
 const Login = () => {
   const history = useHistory();
-  const { updateToken } = useToken();
-  const { getUser } = useUser();
+  const { updateToken, token } = useToken();
+  const { getUser, user } = useUser();
   const {
     register,
     handleSubmit,
@@ -34,11 +34,11 @@ const Login = () => {
       .post("sessions/", data)
       .then((response) => {
         const token = response.data.access;
-        console.log(token);
         localStorage.clear();
         localStorage.setItem("@QualityLife:token", JSON.stringify(token));
         getUser(token);
         updateToken(token);
+        console.log(user, token);
         toast.success("Usuário logado com sucesso!");
         return history.push("/dashboard");
       })

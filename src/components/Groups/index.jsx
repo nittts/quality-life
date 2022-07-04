@@ -139,7 +139,9 @@ export default function GroupsCard() {
         <ButtonsContainer>
           <SearchInput OnClick={searchGroup} setValue={setSearch} />
           <Button>Meus grupos</Button>
-          <Button secondary>Novo Grupo</Button>
+          <Button secondary onClick={() => setOpenModal(true)}>
+            Novo Grupo
+          </Button>
         </ButtonsContainer>
         <GroupsContainer>
           {groups.map((group) => (
