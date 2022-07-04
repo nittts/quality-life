@@ -1,7 +1,4 @@
 import { Switch, Route } from "react-router-dom";
-<<<<<<< HEAD
-import { Container, Content, HabitsContainer, ProfileContainer } from "./style";
-=======
 import {
   Container,
   Content,
@@ -9,7 +6,6 @@ import {
   ProfileContainer,
   Header,
 } from "./style";
->>>>>>> feat/specific-habit-page
 import { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar";
 import Profile from "../../components/Profile";
@@ -27,7 +23,6 @@ import { useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import formSchema from "./FormSchema";
-import Profile from "../../components/Profile";
 
 export default function Habits() {
   const [createModal, setCreateModal] = useState(false);
