@@ -21,6 +21,10 @@ import { useToken } from "../../providers/token";
 import { useUser } from "../../providers/user";
 import { toast } from "react-toastify";
 
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import formSchemaEditGroup from "./formSchemaNewGroup";
+
 export default function SpecificGroup() {
   const params = useParams();
   const { group_id } = params;
@@ -41,6 +45,15 @@ export default function SpecificGroup() {
     hour: "numeric",
     minute: "numeric",
   };
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    resolver: yupResolver(formSchemaEditGroup),
+  });
 
   /* ------------------------- Group related requests ------------------------- */
 
@@ -106,19 +119,13 @@ export default function SpecificGroup() {
       .catch((err) => console.log(err));
   };
 
-  const editGroup = () => {
+  const editGroup = (data) => {
     api
-      .patch(
-        `/groups/${group_id}/`,
-        {
-          category: "Grupo atualizado",
+      .patch(`/groups/${group_id}/`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
+      })
       .then((res) => console.log(res));
   };
 
@@ -256,6 +263,7 @@ export default function SpecificGroup() {
       })
       .then((res) => console.log(res));
   };
+
   /* ------------------------------------ - ----------------------------------- */
 
   const reload = () => {
@@ -263,6 +271,7 @@ export default function SpecificGroup() {
     getGroupGoals();
     getGroupActivities();
   };
+
   useEffect(() => {
     reload();
   }, [location]);
@@ -385,7 +394,9 @@ export default function SpecificGroup() {
           label={"Editar Grupo"}
           modalState={groupModal}
           setModalState={setGroupModal}
-        />
+        >
+          Teste
+        </Modal>
       )}
     </ModalContainer>
   );

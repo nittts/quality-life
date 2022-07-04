@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import api from "../../services/api";
-import axios from "axios";
 
 import { FiUser } from "react-icons/fi";
 import { FaTasks, FaFlag } from "react-icons/fa";
@@ -59,22 +58,6 @@ export default function GroupsCard() {
       .catch((error) => console.log(error));
   }, [page]);
 
-  // const handleMyGroups = () => {
-  //   axios
-  //     .get(`https://kenzie-habits.herokuapp.com/groups/?page=${page}`, {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     })
-  //     .then((response) => {
-  //       // console.log(response);
-  //       // console.log(token);
-  //       console.log(response);
-  //       setGroups(response.data);
-  //     })
-  //     .catch((error) => console.log(error));
-  // };
-
   const searchGroup = () => {
     api
       .get(`groups/?page=1&search=${search}`, {
@@ -118,28 +101,15 @@ export default function GroupsCard() {
       });
   };
 
-  const handleMyGroups = () => {
-    console.log("my groups");
-    // axios
-    //   .get(`https://kenzie-habits.herokuapp.com/groups/?page=${page}`, {
-    //     headers: {
-    //       Authorization: `Bearer ${token}`,
-    //     },
-    //   })
-    //   .then((response) => {
-    //     console.log(response);
-    //     setGroups(response.data);
-    //   })
-    //   .catch((error) => console.log(error));
-  };
-
   return (
     <Container>
       <ListContainer>
         <ButtonsContainer>
           <SearchInput OnClick={searchGroup} setValue={setSearch} />
           <Button>Meus grupos</Button>
-          <Button secondary>Novo Grupo</Button>
+          <Button secondary onClick={() => setOpenModal(true)}>
+            Novo Grupo
+          </Button>
         </ButtonsContainer>
         <GroupsContainer>
           {groups.map((group) => (
