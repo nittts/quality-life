@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import {
   Container,
   Content,
@@ -35,6 +35,7 @@ export default function SpecificGroup() {
   const { token } = useToken();
   const { user } = useUser();
   const location = useLocation();
+  const history = useHistory();
 
   const { name, category, creator, description, users_on_group } = state;
 
@@ -284,15 +285,15 @@ export default function SpecificGroup() {
   return (
     <ModalContainer>
       <Container>
-        <h1>
+        <h2>
           {name && name} - {category && category}
-        </h1>
+        </h2>
         <p>{description && description}</p>
         <Content>
           <CreatorContainer>
-            <h1>
+            <h2>
               <AiTwotoneCrown /> {creator && creator.username}
-            </h1>
+            </h2>
             <p>{creator && creator.email}</p>
           </CreatorContainer>
           <ButtonsContainer>
@@ -320,12 +321,15 @@ export default function SpecificGroup() {
             <Button negative onClick={unsubscribeGroup}>
               Desinscrever-se
             </Button>
+            <Button primary onClick={() => history.push("/groups")}>
+              Voltar
+            </Button>
           </ButtonsContainer>
           <div>
             <GoalsContainer>
-              <h1>
+              <h2>
                 Atividades - <span>{activities && activities.length}</span>
-              </h1>
+              </h2>
               <List>
                 {activities &&
                   activities.map((activity, index) => {
@@ -334,7 +338,7 @@ export default function SpecificGroup() {
                         key={index}
                         onClick={() => handleActivityModal(activity.id)}
                       >
-                        <h1>{activity.title}</h1>
+                        <h2>{activity.title}</h2>
                         <p>
                           {new Date(
                             activity.realization_time
@@ -346,15 +350,15 @@ export default function SpecificGroup() {
               </List>
             </GoalsContainer>
             <HabitsContainer>
-              <h1>
+              <h2>
                 Metas - <span>{goals && goals.length}</span>
-              </h1>
+              </h2>
               <List>
                 {goals &&
                   goals.map((goal, index) => {
                     return (
                       <li key={index} onClick={() => handleGoalModal(goal.id)}>
-                        <h1>{goal.title}</h1>
+                        <h2>{goal.title}</h2>
                       </li>
                     );
                   })}
@@ -362,16 +366,16 @@ export default function SpecificGroup() {
             </HabitsContainer>
           </div>
           <UsersContainer>
-            <h1>
+            <h2>
               Usuários no grupo -
               <span>{users_on_group && users_on_group.length}</span>
-            </h1>
+            </h2>
             <List>
               {users_on_group &&
                 users_on_group.map((user, index) => {
                   return (
                     <li key={index}>
-                      <h1>{user.username}</h1>
+                      <h2>{user.username}</h2>
                       <p>{user.email}</p>
                     </li>
                   );
