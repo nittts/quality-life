@@ -22,6 +22,7 @@ export default function Sidebar() {
   };
 
   const logout = () => {
+    updateToken('');
     history.push("/");
     localStorage.clear();
   };
