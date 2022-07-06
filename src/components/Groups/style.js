@@ -44,27 +44,36 @@ export const ButtonsContainer = styled.div`
 `;
 
 export const GroupsContainer = styled.ul`
-  display: grid;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
   overflow-y: scroll;
   height: 450px;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
   background: var(--color-gray-4);
   padding: 40px;
-  gap: 40px;
+  gap: 24px;
 
   li {
+    flex: 0 0 calc(50% - 24px);
     position: relative;
     padding: 18px;
     border-radius: 4px;
     background: var(--color-white);
     box-shadow: 0 4px 4px 1px rgba(0, 0, 0, 0.15);
     cursor: pointer;
+    /* max-width: 20%; */
 
     header {
       h2 {
         font-weight: 700;
         font-size: 24px;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 200px;
       }
 
       .category-and-author {

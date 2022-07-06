@@ -23,7 +23,7 @@ import { toast } from "react-toastify";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import formSchemaEditGroup from "./formSchemaNewGroup";
+import formSchemaEditGroup from "./formSchemaEditGroup";
 
 export default function SpecificGroup() {
   const params = useParams();

@@ -25,8 +25,10 @@ import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import formSchemaNewGroup from "./formSchemaNewGroup";
+import { useUser } from "../../providers/user";
 
 export default function GroupsCard() {
+  const { user } = useUser();
   const {
     register,
     handleSubmit,
@@ -101,12 +103,33 @@ export default function GroupsCard() {
       });
   };
 
+  const handleMyGroups = () => {
+    api
+      .get("groups/subscriptions/", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        if (response.data.length) {
+          toast.success("Grupos obtidos com sucesso!");
+          setGroups(response.data);
+        } else {
+          toast.error("Este usuário não possui grupos!");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error("Erro ao buscar grupos deste usuário!");
+      });
+  };
+
   return (
     <Container>
       <ListContainer>
         <ButtonsContainer>
           <SearchInput OnClick={searchGroup} setValue={setSearch} />
-          <Button>Meus grupos</Button>
+          <Button onClick={handleMyGroups}>Meus grupos</Button>
           <Button secondary onClick={() => setOpenModal(true)}>
             Novo Grupo
           </Button>
