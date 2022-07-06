@@ -234,7 +234,7 @@ export default function SpecificGroup() {
 
   const createActivity = (data) => {
     const activityData = {
-      realization_time: "2021-03-10T15:00:00Z",
+      realization_time: new Date(),
       group: group_id,
       ...data,
     };
