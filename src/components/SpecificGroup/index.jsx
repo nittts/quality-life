@@ -24,10 +24,9 @@ import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import formSchemaEditGroup from "./formSchemaEditGroup";
-<<<<<<< HEAD
-=======
+import formSchemaCreateActivity from "./formSchemaCreateActivity";
 import Input from "../Input";
->>>>>>> 136d5d6a9ecc9fcb771ab10e9ae27c7d11b4bc4b
+import { date } from "yup/lib/locale";
 
 export default function SpecificGroup() {
   const params = useParams();
@@ -58,6 +57,15 @@ export default function SpecificGroup() {
     reset,
   } = useForm({
     resolver: yupResolver(formSchemaEditGroup),
+  });
+
+  const {
+    register: activityRegister,
+    handleSubmit: activityHandleSubmit,
+    formState: { errors: activityErrors },
+    reset: activityReset,
+  } = useForm({
+    resolver: yupResolver(formSchemaCreateActivity),
   });
 
   /* ------------------------- Group related requests ------------------------- */
@@ -212,10 +220,11 @@ export default function SpecificGroup() {
   /* ------------------------ activity related requests ----------------------- */
 
   const [activityModal, setActivityModal] = useState(false);
+  const [activityModalUpdate, setActivityModalUpdate] = useState(false);
   const [activityInfo, setActivityInfo] = useState({});
 
   const handleActivityModal = (activity_id) => {
-    setActivityModal(true);
+    setActivityModalUpdate(true);
     getSpecificActivity(activity_id);
   };
 
@@ -229,48 +238,54 @@ export default function SpecificGroup() {
       .then((res) => setActivityInfo(res.data));
   };
 
-  const createActivity = (activity_id) => {
+  const createActivity = (data) => {
+    const activityData = {
+      realization_time: "2021-03-10T15:00:00Z",
+      group: group_id,
+      ...data,
+    };
     api
-      .post(
-        `/activities/${activity_id}/`,
-        {
-          title: "Crossfit",
-          realization_time: "2021-03-10T15:00:00Z",
-          group: 753,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      .then((res) => console.log(res));
-  };
-
-  const updateActivity = (activity_id) => {
-    api
-      .patch(
-        `/activities/${activity_id}/`,
-        {
-          title: "Treino funcional na praia - atualizado",
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      .then((res) => console.log(res));
-  };
-
-  const deleteActivity = (activity_id) => {
-    api
-      .delete(`/activities/${activity_id}/`, {
+      .post(`/activities/`, activityData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((res) => console.log(res));
+      .then((res) => {
+        toast.success("Atividade criada com sucesso!");
+        reload();
+        setActivityModal(false);
+      })
+      .catch((err) => toast.error(err));
+  };
+
+  const updateActivity = (data) => {
+    api
+      .patch(`/activities/${activityInfo.id}/`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        toast.success("Atividade alterada com sucesso!");
+        reload();
+        setActivityModalUpdate(false);
+      })
+      .catch((err) => toast.error(err));
+  };
+
+  const deleteActivity = (activity_id) => {
+    api
+      .delete(`/activities/${activityInfo.id}/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        toast.success("Atividade deletada com sucesso!");
+        reload();
+        setActivityModalUpdate(false);
+      })
+      .catch((err) => toast.error(err));
   };
 
   /* ------------------------------------ - ----------------------------------- */
@@ -303,8 +318,9 @@ export default function SpecificGroup() {
             <Button
               primary
               disabled={creator && creator.id !== user.id ? true : false}
+              onClick={() => setActivityModal(true)}
             >
-              Criar Hábito
+              Criar Atividade
             </Button>
             <Button
               secondary
@@ -396,11 +412,73 @@ export default function SpecificGroup() {
       )}
       {activityModal && (
         <Modal
-          label={"Editar Hábito do Grupo"}
+          label={"Criar atividade do Grupo"}
           modalState={activityModal}
           setModalState={setActivityModal}
-        />
+        >
+          <form
+            key={1}
+            onSubmit={activityHandleSubmit(createActivity)}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "16px",
+              padding: "16px",
+              minWidth: "320px",
+            }}
+          >
+            <Input
+              label="Título"
+              type="text"
+              name="title"
+              placeholder="Atividade"
+              register={activityRegister}
+              error={activityErrors.title?.message}
+            />
+
+            <Button success type="submit">
+              Criar Atividade
+            </Button>
+          </form>
+        </Modal>
       )}
+
+      {activityModalUpdate && (
+        <Modal
+          label={"Editar atividade do Grupo"}
+          modalState={updateActivity}
+          setModalState={setActivityModalUpdate}
+        >
+          <form
+            key={1}
+            onSubmit={activityHandleSubmit(updateActivity)}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "16px",
+              padding: "16px",
+              minWidth: "320px",
+            }}
+          >
+            <Input
+              label="Título"
+              type="text"
+              name="title"
+              placeholder="Atividade"
+              register={activityRegister}
+              error={activityErrors.title?.message}
+            />
+
+            <Button success type="submit">
+              Salvar atividade
+            </Button>
+            <Button negative onClick={deleteActivity}>
+              Remover atividade
+            </Button>
+          </form>
+        </Modal>
+      )}
+
       {groupModal && (
         <Modal
           label={"Editar Grupo"}
@@ -408,6 +486,7 @@ export default function SpecificGroup() {
           setModalState={setGroupModal}
         >
           <form
+            key={2}
             onSubmit={handleSubmit(editGroup)}
             style={{
               display: "flex",
