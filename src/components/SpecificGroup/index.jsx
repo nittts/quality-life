@@ -25,6 +25,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import formSchemaEditGroup from "./formSchemaEditGroup";
 import formSchemaCreateActivity from "./formSchemaCreateActivity";
+import formSchemaCreateGoals from "./formSchemaCreateGoals";
 import Input from "../Input";
 import { date } from "yup/lib/locale";
 
@@ -66,6 +67,15 @@ export default function SpecificGroup() {
     reset: activityReset,
   } = useForm({
     resolver: yupResolver(formSchemaCreateActivity),
+  });
+
+  const {
+    register: goalsRegister,
+    handleSubmit: goalsHandleSubmit,
+    formState: { errors: goalsErrors },
+    reset: goalsReset,
+  } = useForm({
+    resolver: yupResolver(formSchemaCreateGoals),
   });
 
   /* ------------------------- Group related requests ------------------------- */
@@ -152,11 +162,13 @@ export default function SpecificGroup() {
 
   /* ------------------------- goal related requests ------------------------- */
 
+  
   const [goalModal, setGoalModal] = useState(false);
+  const [editGoalModal, setEditGoalModal] = useState(false);
   const [goalInfo, setGoalInfo] = useState({});
 
   const handleGoalModal = (goal_id) => {
-    setGoalModal(true);
+    setEditGoalModal(true);
     getSpecificGoal(goal_id);
   };
 
@@ -170,43 +182,56 @@ export default function SpecificGroup() {
       .then((res) => setGoalInfo(res.data));
   };
 
-  const updateGoal = (goal_id) => {
+  const updateGoal = (data) => {
     api.patch(
-      `/goals/${goal_id}/`,
-      { achieved: true },
-      {
+      `/goals/${goalInfo.id}/`,data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }
-    );
+    )
+    .then((res) => {
+      toast.success("Meta alterada com sucesso!");
+      reload();
+      setEditGoalModal(false);
+    })
+    .catch((err) => toast.error(err));
   };
 
-  const createGoal = (goal_id) => {
+  const createGoal = (data) => {
+    console.log(data);
+    const createGoalData = {
+      realization_time: "2021-03-10T15:00:00Z",
+      group: group_id,
+      ...data,
+    }
     api.post(
-      `/goals/${goal_id}/`,
-      {
-        title:
-          "Nenhuma falta na academia cometida pelos membros do grupo na semana",
-        difficulty: "Díficil",
-        how_much_achieved: 0,
-        achieved: false,
-        group: 1,
-      },
-      {
+      `/goals/`,createGoalData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      }
-    );
+      })
+      .then((res) => {
+        toast.success("Meta criada com sucesso!");
+        reload();
+        setGoalModal(false);
+      })
+      .catch((err) => toast.error(err));
   };
+  
 
-  const deleteGoal = (goal_id) => {
-    api.delete(`/goals/${goal_id}/`, {
+  const deleteGoal = (data) => {
+    api.delete(`/goals/${goalInfo.id}/`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    });
+    })
+    .then((res) => {
+     toast.success("Meta deletada com sucesso!");
+      reload();
+      setEditGoalModal(false);
+    })
+    .catch((err) => toast.error(err));
   };
 
   /* ------------------------------------ - ----------------------------------- */
@@ -318,6 +343,7 @@ export default function SpecificGroup() {
             </Button>
             <Button
               secondary
+              onClick={() => setGoalModal(true)}
               disabled={creator && creator.id !== user.id ? true : false}
             >
               Criar Meta
@@ -397,13 +423,97 @@ export default function SpecificGroup() {
           </UsersContainer>
         </Content>
       </Container>
+
       {goalModal && (
         <Modal
-          label={"Editar Meta do Grupo"}
+          label={"Criar meta do Grupo"}
           modalState={goalModal}
           setModalState={setGoalModal}
-        />
+        >
+          <form
+            key={1}
+            onSubmit={goalsHandleSubmit(createGoal)}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "16px",
+              padding: "16px",
+              minWidth: "320px",
+            }}
+          >
+            <Input
+              label="Título"
+              type="text"
+              name="title"
+              placeholder="Meta"
+              register={goalsRegister}
+              error={goalsErrors.title?.message}
+            />
+            <Input
+              label="Dificuldade"
+              type="text"
+              name="difficulty"
+              placeholder="Dificuldade"
+              register={goalsRegister}
+              error={goalsErrors.difficulty?.message}
+            />
+            <Input
+              label={`Progresso`}
+              type="range"
+              name="how_much_achieved"
+              register={goalsRegister}              
+            />
+
+            <Button success type="submit">
+              Criar Meta
+            </Button>
+          </form>
+        </Modal>
+      )}          
+
+      {editGoalModal && (
+        <Modal
+          label={"Editar Meta do Grupo"}
+          modalState={editGoalModal}
+          setModalState={setEditGoalModal}
+        >
+          <form
+            key={1}
+            onSubmit={goalsHandleSubmit(updateGoal)}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "16px",
+              padding: "16px",
+              minWidth: "320px",
+            }}
+          >
+            <Input
+              label="Título"
+              type="text"
+              name="title"
+              placeholder="Meta"
+              register={goalsRegister}
+              error={activityErrors.title?.message}
+            />
+            <Input
+              label="Dificuldade"
+              type="text"
+              name="difficulty"
+              placeholder="Dificuldade"
+              register={goalsRegister}
+              error={errors.difficulty?.message}
+            />
+             <Button success type="submit">
+              Salvar meta
+            </Button>
+            <Button negative onClick={()=>deleteGoal()}>
+              Deletar
+            </Button>
+          </form>
+        </Modal> 
       )}
+      
       {activityModal && (
         <Modal
           label={"Criar atividade do Grupo"}
