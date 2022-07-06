@@ -1,4 +1,3 @@
-// to do styles
 import styled from "styled-components";
 
 export const Container = styled.div`

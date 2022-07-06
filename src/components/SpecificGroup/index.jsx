@@ -171,48 +171,42 @@ export default function SpecificGroup() {
   };
 
   const updateGoal = (goal_id) => {
-    api
-      .patch(
-        `/goals/${goal_id}/`,
-        { achieved: true },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      .then((res) => console.log(res));
-  };
-
-  const createGoal = (goal_id) => {
-    api
-      .post(
-        `/goals/${goal_id}/`,
-        {
-          title:
-            "Nenhuma falta na academia cometida pelos membros do grupo na semana",
-          difficulty: "Díficil",
-          how_much_achieved: 0,
-          achieved: false,
-          group: 1,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      .then((res) => console.log(res));
-  };
-
-  const deleteGoal = (goal_id) => {
-    api
-      .delete(`/goals/${goal_id}/`, {
+    api.patch(
+      `/goals/${goal_id}/`,
+      { achieved: true },
+      {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      })
-      .then((res) => console.log(res));
+      }
+    );
+  };
+
+  const createGoal = (goal_id) => {
+    api.post(
+      `/goals/${goal_id}/`,
+      {
+        title:
+          "Nenhuma falta na academia cometida pelos membros do grupo na semana",
+        difficulty: "Díficil",
+        how_much_achieved: 0,
+        achieved: false,
+        group: 1,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+  };
+
+  const deleteGoal = (goal_id) => {
+    api.delete(`/goals/${goal_id}/`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   };
 
   /* ------------------------------------ - ----------------------------------- */

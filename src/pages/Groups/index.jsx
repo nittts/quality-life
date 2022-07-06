@@ -1,21 +1,5 @@
 import { Switch, Route } from "react-router-dom";
-import { Container, ProfileContainer, Content, Header } from "./style";
-import { useEffect, useState } from "react";
-// import Sidebar from "../../components/Sidebar";
-import List from "../../components/List";
-import Button from "../../components/Button";
-import Card from "../../components/Card";
-import Modal from "../../components/Modal";
-import Habit from "../../components/Habit";
-import api from "../../services/api";
-import Input from "../../components/Input";
-import { useToken } from "../../providers/token";
-import { FiCheckCircle } from "react-icons/fi";
-import { useUser } from "../../providers/user";
-import { useLocation } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-// import formSchema from "./FormSchema";
+import { Container, Content, Header } from "./style";
 
 // components
 import Sidebar from "../../components/Sidebar";

@@ -1,11 +1,5 @@
 import { Switch, Route } from "react-router-dom";
-import {
-  Container,
-  Content,
-  HabitsContainer,
-  ProfileContainer,
-  Header,
-} from "./style";
+import { Container, Content, HabitsContainer, Header } from "./style";
 import { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar";
 import Profile from "../../components/Profile";
@@ -40,7 +34,6 @@ export default function Habits() {
   } = useForm({ resolver: yupResolver(formSchema) });
 
   const setCompletedHabit = (id) => {
-    console.log(id);
     api
       .patch(
         `/habits/${id}/`,
@@ -56,7 +49,6 @@ export default function Habits() {
   };
 
   const resetHabit = (id) => {
-    console.log(id);
     api
       .patch(
         `/habits/${id}/`,
@@ -103,7 +95,6 @@ export default function Habits() {
 
   useEffect(() => {
     getHabits();
-    //eslint-disable-next-line
   }, [location]);
 
   return (

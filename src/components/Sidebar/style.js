@@ -81,7 +81,7 @@ export const Logo = styled.div`
   height: 10%;
   white-space: nowrap;
 
-  h1 {
+  h2 {
     font-size: 2rem;
     font-family: "Mukta";
     color: var(--color-tertiary-3);

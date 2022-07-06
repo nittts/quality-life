@@ -29,7 +29,7 @@ export default function Sidebar() {
   return (
     <Container Extends={Extends}>
       <Logo onClick={handleExtend}>
-        <h1>
+        <h2>
           {Extends ? (
             <>
               Quality<span>Life</span>
@@ -39,7 +39,7 @@ export default function Sidebar() {
               Q<span>L</span>
             </>
           )}
-        </h1>
+        </h2>
       </Logo>
       <Content Extends={Extends}>
         <li onClick={() => goTo("/dashboard")}>
