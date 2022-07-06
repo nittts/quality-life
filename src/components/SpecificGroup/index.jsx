@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import {
   Container,
   Content,
@@ -24,6 +24,10 @@ import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import formSchemaEditGroup from "./formSchemaEditGroup";
+<<<<<<< HEAD
+=======
+import Input from "../Input";
+>>>>>>> 136d5d6a9ecc9fcb771ab10e9ae27c7d11b4bc4b
 
 export default function SpecificGroup() {
   const params = useParams();
@@ -34,6 +38,7 @@ export default function SpecificGroup() {
   const { token } = useToken();
   const { user } = useUser();
   const location = useLocation();
+  const history = useHistory();
 
   const { name, category, creator, description, users_on_group } = state;
 
@@ -126,7 +131,11 @@ export default function SpecificGroup() {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((res) => console.log(res));
+      .then((res) => {
+        toast.success("Grupo editado com sucesso!");
+        reload();
+        setGroupModal(false);
+      });
   };
 
   const [groupModal, setGroupModal] = useState(false);
@@ -279,15 +288,15 @@ export default function SpecificGroup() {
   return (
     <ModalContainer>
       <Container>
-        <h1>
+        <h2>
           {name && name} - {category && category}
-        </h1>
+        </h2>
         <p>{description && description}</p>
         <Content>
           <CreatorContainer>
-            <h1>
+            <h2>
               <AiTwotoneCrown /> {creator && creator.username}
-            </h1>
+            </h2>
             <p>{creator && creator.email}</p>
           </CreatorContainer>
           <ButtonsContainer>
@@ -315,12 +324,15 @@ export default function SpecificGroup() {
             <Button negative onClick={unsubscribeGroup}>
               Desinscrever-se
             </Button>
+            <Button primary onClick={() => history.push("/groups")}>
+              Voltar
+            </Button>
           </ButtonsContainer>
           <div>
             <GoalsContainer>
-              <h1>
+              <h2>
                 Atividades - <span>{activities && activities.length}</span>
-              </h1>
+              </h2>
               <List>
                 {activities &&
                   activities.map((activity, index) => {
@@ -329,7 +341,7 @@ export default function SpecificGroup() {
                         key={index}
                         onClick={() => handleActivityModal(activity.id)}
                       >
-                        <h1>{activity.title}</h1>
+                        <h2>{activity.title}</h2>
                         <p>
                           {new Date(
                             activity.realization_time
@@ -341,15 +353,15 @@ export default function SpecificGroup() {
               </List>
             </GoalsContainer>
             <HabitsContainer>
-              <h1>
+              <h2>
                 Metas - <span>{goals && goals.length}</span>
-              </h1>
+              </h2>
               <List>
                 {goals &&
                   goals.map((goal, index) => {
                     return (
                       <li key={index} onClick={() => handleGoalModal(goal.id)}>
-                        <h1>{goal.title}</h1>
+                        <h2>{goal.title}</h2>
                       </li>
                     );
                   })}
@@ -357,16 +369,16 @@ export default function SpecificGroup() {
             </HabitsContainer>
           </div>
           <UsersContainer>
-            <h1>
+            <h2>
               Usuários no grupo -
               <span>{users_on_group && users_on_group.length}</span>
-            </h1>
+            </h2>
             <List>
               {users_on_group &&
                 users_on_group.map((user, index) => {
                   return (
                     <li key={index}>
-                      <h1>{user.username}</h1>
+                      <h2>{user.username}</h2>
                       <p>{user.email}</p>
                     </li>
                   );
@@ -395,7 +407,44 @@ export default function SpecificGroup() {
           modalState={groupModal}
           setModalState={setGroupModal}
         >
-          Teste
+          <form
+            onSubmit={handleSubmit(editGroup)}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "16px",
+              padding: "16px",
+              minWidth: "310px",
+            }}
+          >
+            <Input
+              label="Nome"
+              type="text"
+              name="name"
+              placeholder="Nome"
+              register={register}
+              error={errors.name?.message}
+            />
+            <Input
+              label="Descrição"
+              type="text"
+              name="description"
+              placeholder="Descrição"
+              register={register}
+              error={errors.description?.message}
+            />
+            <Input
+              label="Categoria"
+              type="text"
+              name="category"
+              placeholder="Categoria"
+              register={register}
+              error={errors.category?.message}
+            />
+            <Button success type="submit">
+              Novo grupo
+            </Button>
+          </form>
         </Modal>
       )}
     </ModalContainer>

@@ -1,6 +1,5 @@
-// To do build routes component
-import { Switch, Route } from "react-router-dom";
-
+import { Switch } from "react-router-dom";
+import Route from "./protectedRoute";
 import AboutUs from "../pages/AboutUs";
 import Register from "../pages/Register";
 import Dashboard from "../pages/Dashboard";
@@ -16,12 +15,10 @@ const Routes = () => {
       <Route exact path={"/"} component={Home}></Route>
       <Route path={"/register"} component={Register} />
       <Route path={"/login"} component={Login} />
-      <Route path={"/dashboard"} component={Dashboard} />
-      <Route path={"/about-us"} component={AboutUs} />
-      <Route path={"/habit"} component={Habits} />
-      <Route path={"/groups"} component={Groups} />
-
-      {/* após todas as rotas do app */}
+      <Route isPrivate={true} path={"/dashboard"} component={Dashboard} />
+      <Route isPrivate={true} path={"/about-us"} component={AboutUs} />
+      <Route isPrivate={true} path={"/habit"} component={Habits} />
+      <Route isPrivate={true} path={"/groups"} component={Groups} />
       <Route path={"*"} component={NotFound} />
     </Switch>
   );

@@ -19,7 +19,7 @@ export const Container = styled.div`
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
 
-  > h1 {
+  > h2 {
     text-align: center;
     width: 100%;
     color: var(--color-secondary-3);
@@ -56,7 +56,7 @@ export const Content = styled.div`
     justify-content: flex-end;
   }
 
-  h1 {
+  h2 {
     color: var(--color-tertiary-3);
 
     :hover {
@@ -69,12 +69,12 @@ export const Content = styled.div`
   }
 
   > div:nth-of-type(1) {
-    width: clamp(150px, 50%, 250px);
+    width: 250px;
     display: flex;
     flex-flow: column nowrap;
     align-items: flex-start;
 
-    h1 {
+    h2 {
       display: flex;
       align-items: center;
     }
@@ -108,12 +108,12 @@ export const Content = styled.div`
           margin: 1%;
           padding: 1%;
 
-          h1 {
+          h2 {
             transition: 0.2s ease-in-out;
             color: var(--color-gray-5);
           }
           :hover {
-            h1 {
+            h2 {
               color: var(--color-tertiary-3);
             }
           }
@@ -132,7 +132,7 @@ export const CreatorContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   width: 85%;
   height: 80%;
   background: rgba(255, 255, 255, 0.5);
@@ -231,12 +231,12 @@ export const UsersContainer = styled.div`
       li {
         margin: 1%;
         padding: 1%;
-        h1 {
+        h2 {
           transition: 0.2s ease-in-out;
           color: var(--color-gray-5);
         }
         :hover {
-          h1 {
+          h2 {
             cursor: auto;
             color: var(--color-tertiary-3);
           }

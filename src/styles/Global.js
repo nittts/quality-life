@@ -12,7 +12,7 @@ const Global = createGlobalStyle`
     body {
         font-family: 'Inter', sans-serif;
         background: var(--color-gray-2);
-
+        overflow-x: hidden;
         &::before,
         &::after {
             z-index: -1000;
