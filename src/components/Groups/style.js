@@ -15,7 +15,12 @@ export const ListContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 90vw;
+  /* width: 90vw; */
+
+  @media (max-width: 768px) {
+    margin-left: 80px;
+  }
+
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
@@ -52,12 +57,12 @@ export const GroupsContainer = styled.ul`
   overflow-y: scroll;
   height: 450px;
   background: var(--color-gray-4);
+  /* background */
   padding: 40px;
   gap: 24px;
 
   li {
-    flex: 0 0 calc(50% - 24px);
-    position: relative;
+    flex: 1 1 320px;
     padding: 18px;
     border-radius: 4px;
     background: var(--color-white);
@@ -65,6 +70,13 @@ export const GroupsContainer = styled.ul`
     cursor: pointer;
 
     header {
+      display: flex;
+      justify-content: space-between;
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+      }
+
       h2 {
         font-weight: 700;
         font-size: 24px;
@@ -76,12 +88,12 @@ export const GroupsContainer = styled.ul`
       }
 
       .category-and-author {
-        position: absolute;
+        /* position: absolute;
         right: 18px;
-        top: 18px;
+        top: 18px; */
         display: flex;
         flex-direction: column;
-        align-items: flex-end;
+        /* align-items: flex-end; */
         font-size: 14px;
       }
 
@@ -96,6 +108,14 @@ export const GroupsContainer = styled.ul`
 
     section {
       padding: 30px 0;
+
+      p {
+        font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 150px;
+      }
     }
 
     footer {
