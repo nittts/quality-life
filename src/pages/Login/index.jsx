@@ -38,7 +38,6 @@ const Login = () => {
         localStorage.setItem("@QualityLife:token", JSON.stringify(token));
         getUser(token);
         updateToken(token);
-        console.log(user, token);
         toast.success("Usuário logado com sucesso!");
         return history.push("/dashboard");
       })

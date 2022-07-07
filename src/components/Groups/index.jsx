@@ -38,6 +38,7 @@ export default function GroupsCard() {
     resolver: yupResolver(formSchemaNewGroup),
   });
 
+  const [disableButtons, setDisableButtons] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [groups, setGroups] = useState([]);
   const [page, setPage] = useState(1);
@@ -46,7 +47,8 @@ export default function GroupsCard() {
   const { token } = useToken();
   const [search, setSearch] = useState("");
 
-  useEffect(() => {
+  const searchAllgroups = () => {
+    setDisableButtons(false);
     api
       .get(`groups/?page=${page}`, {
         headers: {
@@ -58,6 +60,10 @@ export default function GroupsCard() {
         setGroups(response.data.results);
       })
       .catch((error) => console.log(error));
+  };
+
+  useEffect(() => {
+    searchAllgroups();
   }, [page]);
 
   const searchGroup = () => {
@@ -104,6 +110,8 @@ export default function GroupsCard() {
   };
 
   const handleMyGroups = () => {
+    setDisableButtons(true);
+
     api
       .get("groups/subscriptions/", {
         headers: {
@@ -129,12 +137,20 @@ export default function GroupsCard() {
       <ListContainer>
         <ButtonsContainer>
           <SearchInput OnClick={searchGroup} setValue={setSearch} />
+
+          <Button primary onClick={searchAllgroups}>
+            Todos os grupos
+          </Button>
+
           <Button onClick={handleMyGroups}>Meus grupos</Button>
+
           <Button secondary onClick={() => setOpenModal(true)}>
             Novo Grupo
           </Button>
         </ButtonsContainer>
         <GroupsContainer>
+          {/* {myGroups.length !== 0 && setGroups(myGroups)} */}
+
           {groups.map((group) => (
             <li
               key={group.id}
@@ -167,20 +183,24 @@ export default function GroupsCard() {
           ))}
         </GroupsContainer>
         <ButtonsBotContainer>
-          <Button
-            primary
-            onClick={previousPage}
-            disabled={requestInfo.previous === null && "disabled"}
-          >
-            Anterior
-          </Button>
-          <Button
-            primary
-            onClick={nextPage}
-            disabled={requestInfo.next === null && "disabled"}
-          >
-            Próximo
-          </Button>
+          {!disableButtons && (
+            <>
+              <Button
+                primary
+                onClick={previousPage}
+                disabled={requestInfo.previous === null && "disabled"}
+              >
+                Anterior
+              </Button>
+              <Button
+                primary
+                onClick={nextPage}
+                disabled={requestInfo.next === null && "disabled"}
+              >
+                Próximo
+              </Button>
+            </>
+          )}
         </ButtonsBotContainer>
       </ListContainer>
 

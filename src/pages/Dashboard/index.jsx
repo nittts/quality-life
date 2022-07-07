@@ -18,6 +18,7 @@ export default function Dashboard() {
   const history = useHistory();
   const location = useLocation();
   const [habitList, setHabitList] = useState([]);
+  const [groupList, setGroupList] = useState([]);
 
   const getHabits = () => {
     api
@@ -74,7 +75,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     getHabits();
-    //eslint-disable-next-line
+    getMyGroups();
   }, [location]);
 
   useEffect(() => {
@@ -103,6 +104,23 @@ export default function Dashboard() {
       });
     }
   }, []);
+
+  const getMyGroups = () => {
+    api
+      .get("groups/subscriptions/", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        if (response.data.length) {
+          setGroupList(response.data);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <Container>
@@ -140,7 +158,21 @@ export default function Dashboard() {
                 );
               })}
           </List>
-          <List label="Meus Grupos"></List>
+          <List label="Meus Grupos">
+            {groupList &&
+              groupList.map((group) => {
+                return (
+                  <Card
+                    goTo="groups"
+                    id={group.id}
+                    data={{ ...user, ...group }}
+                    key={group.id}
+                  >
+                    <h1>{group.name}</h1>
+                  </Card>
+                );
+              })}
+          </List>
         </ListContainer>
       </Content>
     </Container>
