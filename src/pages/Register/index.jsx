@@ -1,4 +1,3 @@
-// To do build page
 import { Container } from "./style";
 
 import Input from "../../components/Input";

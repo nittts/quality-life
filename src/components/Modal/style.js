@@ -1,4 +1,3 @@
-// to do styles
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -17,8 +16,6 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-  /* width: 50%; */
-  /* height: 90%; */
   background: rgba(217, 217, 217, 1);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -28,7 +25,7 @@ export const Content = styled.div`
 
   @media (max-width: 767px) {
     width: 95%;
-    height: auto;   
+    height: auto;
   }
 `;
 
@@ -53,7 +50,7 @@ export const Header = styled.div`
   }
 
   button {
-    min-width: 10%;    
+    min-width: 10%;
     border-radius: 8px;
     font-weight: 700;
   }

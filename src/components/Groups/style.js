@@ -63,7 +63,6 @@ export const GroupsContainer = styled.ul`
     background: var(--color-white);
     box-shadow: 0 4px 4px 1px rgba(0, 0, 0, 0.15);
     cursor: pointer;
-    /* max-width: 20%; */
 
     header {
       h2 {
@@ -107,7 +106,6 @@ export const GroupsContainer = styled.ul`
 `;
 
 export const ButtonsBotContainer = styled.div`
-  /* background: red; */
   width: 100%;
   display: flex;
   justify-content: space-around;

@@ -1,4 +1,3 @@
-// To do build component
 import { Container, Header, Content } from "./style";
 import Button from "../Button";
 

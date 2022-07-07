@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components";
 
 export const Container = styled.button`
-  /* min-width: 15rem; */
   &[disabled] {
     cursor: not-allowed;
     background: var(--color-tertiary-2);

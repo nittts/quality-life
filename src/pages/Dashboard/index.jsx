@@ -1,4 +1,3 @@
-// To do build page
 import { Container, Content, ProfileContainer, ListContainer } from "./style";
 import Sidebar from "../../components/Sidebar";
 import Profile from "../../components/Profile";
@@ -74,7 +73,6 @@ export default function Dashboard() {
 
   useEffect(() => {
     getHabits();
-    //eslint-disable-next-line
   }, [location]);
 
   useEffect(() => {

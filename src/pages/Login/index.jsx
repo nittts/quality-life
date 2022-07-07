@@ -1,4 +1,3 @@
-// To do build page
 import { Container } from "./style";
 
 import { useHistory } from "react-router-dom";
@@ -38,12 +37,10 @@ const Login = () => {
         localStorage.setItem("@QualityLife:token", JSON.stringify(token));
         getUser(token);
         updateToken(token);
-        console.log(user, token);
         toast.success("Usuário logado com sucesso!");
         return history.push("/dashboard");
       })
       .catch((error) => {
-        console.log(error);
         toast.error("Usuário ou senha incorretos!");
       });
   };
